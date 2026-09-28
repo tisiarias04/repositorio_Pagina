@@ -6,12 +6,12 @@
   <head>
     <title>Vinoteca</title>
     <style>
-      /* fondo oscuro y letra blanca
+      /* fondo oscuro y letra blanca*/
         body {
             background-color: #1a1a1a;
             color: #e0e0e0;
         }
-        */
+
       tr,
       td {
         border: 2px solid purple;
@@ -27,21 +27,15 @@
     <header>
       <nav class="top-menu" aria-label="Menú principal">
         <div class="top-menu-group">
-          <a
-            class="menu-link"
-            href="#contacto"
-            aria-label="Ir directamente a la información de contacto"
-          >
+          <a class="menu-link" href="#contacto"
+             aria-label="Ir directamente a la información de contacto">
             Contacto
           </a>
         </div>
 
         <div class="top-menu-group">
-          <a
-            class="menu-link"
-            href="#buscar"
-            aria-label="Ir al buscador de productos"
-          >
+          <a class="menu-link" href="#buscar"
+            aria-label="Ir al buscador de productos">
             🔎 Buscar
           </a>
           <a class="menu-link" href="#" aria-label="Ver carrito de compras">
@@ -62,20 +56,117 @@
 
 
     <section>
+        <div class="filtro"><!-- style="position: fixed; right:10px" -->
+            <div class="filtro-precio" >
+                <h3>Precio</h3>
+                <ul >
+                    <li>
+                        <a href="#Aperitivos" title="Hasta $15.000"
+                           style="color:gray; text-decoration: none">Hasta $15.000
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#Vodkas" title="$15.000-$20.000"
+                           style="color:gray; text-decoration: none">Entre $15.000 y $20.000
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#vinos" title="$20.000-$50.000"
+                           style="color:gray; text-decoration: none">Entre $20.000 y $50.000
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#Whiskies" title="Mas $50.000"
+                           style="color:gray; text-decoration: none">Más de $50.000
+                        </a>
+                    </li>
+                    <li>
+                        <form>
+                            <input name="min" placeholder="Min" type="number" min="0" size="6">
+                            <span>-</span>
+                            <input name="max" placeholder="Max" type="number" min="0" size="6">
+                            <button type="submit">
+                                Aplicar
+                            </button>
+                        </form>
+                        <!-- Esta opcion seria para ingresar manual un minimo y maximo, para filtrar (necesita js) -->
+                    </li>
+                </ul>
+            </div>
+            <div class="filtro-tipo" >
+                <h3>Tipo Bebida</h3>
+                <ul >
+                    <li>
+                        <a href="#Aperitivos" title="aperitivo"
+                           style="color:gray; text-decoration: none">Aperitivos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#Vodkas" title="Vodkas"
+                           style="color:gray; text-decoration: none">Vodkas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#vinos" title="vinos"
+                           style="color:gray; text-decoration: none">Vinos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#Whiskies" title="Whiskies"
+                           style="color:gray; text-decoration: none">Whiskies
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="filtro-cantidadUnidad" >
+                <h3>Volumen de la unidad</h3>
+                <ul >
+                    <li>
+                        <a href="#" title="Hasta 350mL"
+                           style="color:gray; text-decoration: none">Menos de 350mL
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="350mL-750mL"
+                           style="color:gray; text-decoration: none">Entre 350mL y 750mL
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="750mL-1L"
+                           style="color:gray; text-decoration: none">Entre 750mL y 1L
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="Mas 1L"
+                           style="color:gray; text-decoration: none">1L o más
+                        </a>
+                    </li>
+                    <li>
+                        <form>
+                            <input name="min" placeholder="Min" type="number" min="0" size="6">
+                            <span>-</span>
+                            <input name="max" placeholder="Max" type="number" min="0" size="6">
+                            <button type="submit">
+                                Aplicar
+                            </button>
+                        </form>
+                        <!-- Esta opcion seria para ingresar manual un minimo y maximo, para filtrar (necesita js) -->
+                    </li>
+                </ul>
+            </div>
+        </div>
 
 
-      <table
-        style="width: 800px; border-collapse: separate; border-spacing: 10px"
-      >
-      <h2>Vinos</h2>
+      <table style="width: 800px; border-collapse: separate; border-spacing: 10px">
+      <h2 id="vinos">Vinos</h2>
         <tr>
           <td>
             <article>
               <img src="img/vino.jpg" width="230px;" />
               <p>Vino Tinto "Viñas de Balbo"</p>
-              <a target="_blank_" href="paginaProducto.html"
-                ><h2>Más Información</h2></a
-              >
+              <a target="_blank_" href="paginaProducto.html">
+                  <h2>Más Información</h2>
+              </a>
               
             </article>
           </td>
@@ -84,9 +175,9 @@
             <article>
               <img src="img/vino-tinto.jpg" width="200px;" />
               <p>Vino Tinto "Echeverria"</p>
-              <a target="_blank_" href="paginaProducto.html"
-                ><h2>Más Información</h2></a
-              >
+              <a target="_blank_" href="paginaProducto.html">
+                  <h2>Más Información</h2>
+              </a>
             </article>
           </td>
 
@@ -94,27 +185,25 @@
             <article>
               <img src="img/vino-blanco.jpg" width="90px;" />
               <p>Vino Blanco "Humberto Canale"</p>
-              <a target="_blank_" href="paginaProducto.html"
-                ><h2>Más Información</h2></a
-              >
+              <a target="_blank_" href="paginaProducto.html">
+                  <h2>Más Información</h2>
+              </a>
             </article>
           </td>
         </tr>
       </table>
 
 
-      <table
-        style="width: 800px; border-collapse: separate; border-spacing: 10px"
-      >
-      <h2>Aperitivos</h2>
+      <table style="width: 800px; border-collapse: separate; border-spacing: 10px">
+      <h2 id="Aperitivos">Aperitivos</h2>
         <tr>
           <td>
             <article>
               <img src="img/fernet.jpg" width="200px;" />
               <p>Aperitivo Fernet Branca</p>
-              <a target="_blank_" href="paginaProducto.html"
-                ><h2>Más Información</h2></a
-              >
+              <a target="_blank_" href="paginaProducto.html">
+                  <h2>Más Información</h2>
+              </a>
             </article>
           </td>
 
@@ -122,9 +211,9 @@
             <article>
               <img src="img/aperol.jpg" width="210px;" />
               <p>Aperitivo Aperol</p>
-              <a target="_blank_" href="paginaProducto.html"
-                ><h2>Más Información</h2></a
-              >
+              <a target="_blank_" href="paginaProducto.html">
+                  <h2>Más Información</h2>
+              </a>
             </article>
           </td>
 
@@ -132,26 +221,24 @@
             <article>
               <img src="img/gancia.jpg" width="140px;" />
               <p>Aperitivo Gancia</p>
-              <a target="_blank_" href="paginaProducto.html"
-                ><h2>Más Información</h2></a
-              >
+              <a target="_blank_" href="paginaProducto.html">
+                  <h2>Más Información</h2>
+              </a>
             </article>
           </td>
         </tr>
       </table>
 
-      <table
-        style="width: 800px; border-collapse: separate; border-spacing: 10px"
-      >
-      <h2>Whiskies</h2>
+      <table style="width: 800px; border-collapse: separate; border-spacing: 10px">
+      <h2 id="Whiskies">Whiskies</h2>
         <tr>
           <td>
             <article>
               <img src="img/whisky2.jpg" width="200px;" />
               <p>Whisky "Blue Label - Johnnie Walker"</p>
-              <a target="_blank_" href="paginaProducto.html"
-                ><h2>Más Información</h2></a
-              >
+              <a target="_blank_" href="paginaProducto.html">
+                  <h2>Más Información</h2>
+              </a>
             </article>
           </td>
 
@@ -159,9 +246,9 @@
             <article>
               <img src="img/whisky3.jpg" width="200px;" />
               <p>Whisky "Red Label - Johnnie Walker"</p>
-              <a target="_blank_" href="paginaProducto.html"
-                ><h2>Más Información</h2></a
-              >
+              <a target="_blank_" href="paginaProducto.html">
+                  <h2>Más Información</h2>
+              </a>
             </article>
           </td>
 
@@ -169,26 +256,23 @@
             <article>
               <img src="img/whisky1.jpg" width="100px;" />
               <p>Whisky "Johnnie Walker"</p>
-              <a target="_blank_" href="paginaProducto.html"
-                ><h2>Más Información</h2></a
-              >
+              <a target="_blank_" href="paginaProducto.html">
+                  <h2>Más Información</h2></a>
             </article>
           </td>
         </tr>
       </table>
 
-<table
-        style="width: 800px; border-collapse: separate; border-spacing: 10px"
-      >
-      <h2>Vodkas</h2>
+      <table style="width: 800px; border-collapse: separate; border-spacing: 10px">
+        <h2 id="Vodkas">Vodkas</h2>
         <tr>
           <td>
             <article>
               <img src="img/vodka2.jpg" width="110px;" />
               <p>Vodka Absolut Original</p>
-              <a target="_blank_" href="paginaProducto.html"
-                ><h2>Más Información</h2></a
-              >
+              <a target="_blank_" href="paginaProducto.html">
+                  <h2>Más Información</h2>
+              </a>
             </article>
           </td>
 
@@ -196,9 +280,9 @@
             <article>
               <img src="img/vodka3.jpg" width="200px;" />
               <p>Vodka Smirnoff Original</p>
-              <a target="_blank_" href="paginaProducto.html"
-                ><h2>Más Información</h2></a
-              >
+              <a target="_blank_" href="paginaProducto.html">
+                  <h2>Más Información</h2>
+              </a>
             </article>
           </td>
 
@@ -206,15 +290,15 @@
             <article>
               <img src="img/vodka4.jpg" width="200px;" />
               <p>Vodka Sernova Original</p>
-              <a target="_blank_" href="paginaProducto.html"
-                ><h2>Más Información</h2></a
-              >
+              <a target="_blank_" href="paginaProducto.html">
+                  <h2>Más Información</h2>
+              </a>
             </article>
           </td>
         </tr>
       </table>
 
-      <!-- repeti el mismo patron que hizo el benja, más que nada porque tendría que ser algo así pero con otros productos -->
+      <!-- repeti el mismo patron que hizo benja, más que nada porque tendría que ser algo así pero con otros productos -->
       <p></p>
       <p></p>
       <p></p>
