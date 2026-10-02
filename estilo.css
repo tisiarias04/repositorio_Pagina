@@ -90,23 +90,23 @@ header {
 .main {
     width: 100%;
     max-width: 1300px;
-    margin: 0 auto;
+    margin-left: 10rem;
     padding: 3rem;
     padding-top:1rem;
-    background: var(--crema);
     margin-bottom: 3rem;
     display:flex;
 }
 
 .filtro {
     position:sticky;
-    top: 10px;
+    top: 40px;
     align-self:flex-start;
     gap: 1.25rem;
     padding: 1.5rem;
     border: 1px solid #e0d1b8;
     border-radius: 12px;
     background: var(--crema-claro);
+    margin-top:40px;
 }
 
 .filtro h3 {
@@ -163,15 +163,16 @@ header {
 }
 
 .productos h2 {
-    color: var(--bordo-oscuro);
+    color: var(--crema);
     font-family: Georgia, "Times New Roman", serif;
     font-size: 2rem;
+    margin-top: 40px;
 }
 
 table{
-    width: 800px;
+    width: 1000px;
     border-collapse: separate;
-    border-spacing: 10px;
+    border-spacing: 30px;
     table-layout: fixed;
 }
 
@@ -232,7 +233,7 @@ hr {
 
 .site-footer {
     padding: 2rem;
-    background: var(--bordo-oscuro);
+    background: #380c14;
     color: var(--blanco);
 }
 
