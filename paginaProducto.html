@@ -1,113 +1,135 @@
 <!DOCTYPE html>
 <html>
-<head> 
-    <title>Vino Tinto "Viñas de Balbo"</title>
-    <style>
-        /* fondo oscuro y letra blanca*/
-        body {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-        }
-    </style>
-    <link rel="stylesheet" href="styles.css">
+
+<head>
+   <title>Vino Tinto "Viñas de Balbo"</title>
+   <link rel="stylesheet" href="styles.css">
 </head>
 
+
 <body>
-<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a> <!-- revisar-->
 
+
+
+<!--botones de contacto, menu principal, busqueda y carrito-->
 <div class="page-shell">
-    <header class="site-header">
-        <nav class="top-menu" aria-label="Menú principal">
-            <div class="top-menu-group">
-                <a class="menu-link" href="estructura.html#contacto">📍 Contacto</a>
-            </div>
-            <div class="top-menu-group">
-                <a class="menu-link" href="estructura.html#buscar">🔎 Buscar</a>
-                <a class="menu-link" href="estructura.html#carrito" aria-label="Ver carrito de compras">🛒 Carrito (0)</a>
-            </div>
-        </nav>
+   <header class="site-header">
+       <nav class="top-menu" aria-label="Menú principal">
+           <div class="top-menu-group">
+               <a class="menu-link" href="#contacto">📍 Contacto</a>
+           </div>
+           <div class="top-menu-group">
+               <a class="menu-link" href="#buscar">🔎 Buscar</a>
+               <a class="menu-link" href="#carrito" aria-label="Ver carrito de compras">🛒 Carrito (0)</a>
+           </div>
+       </nav>
 
-        <div class="brand">
-            <p>Vinoteca</p>
-            <h1>Detalle del producto</h1>
-        </div>
-    </header>
 
-    <main id="contenido">
-        <section class="content-section" aria-labelledby="producto-titulo">
-            <a class="back-link" href="estructura.html#catalogo">← Volver al catálogo</a>
+       <div class="brand">
+           <p>Vinoteca</p>
+           <h1>Detalle del producto</h1>
+       </div>
+   </header>
 
-            <div class="detail-layout">
-                <div>
-                    <img
-                        class="detail-image"
-                        src="img/vino.jpg"
-                        alt="Botella de vino tinto Malbec Reserva">
-                </div>
 
-                <article class="detail-content">
-                    <span class="product-type">Vino tinto</span>
-                    <h2 id="producto-titulo">viña de balbo Reserva</h2>
 
-                    <p>
-                        El Gran Tinto presenta un desarrollo enológico más cuidado, 
-                        con selección especial de uvas y un perﬁl más intenso, 
-                        elaborado por nuestro equipo enológico para elevar la experiencia tradicional del tinto de mesa argentino.
-                    </p>
 
-                    <p class="price">$21.000</p>
+   <main id="contenido">
 
-                    <h3>Información del producto</h3>
-                    <ul class="info-list">
-                        <li><strong>Presentación:</strong> botella de 750 ml</li>
-                        <li><strong>Tipo:</strong> vino tinto</li>
-                        <li><strong>Variedad:</strong> Magnum</li>
-                        <li><strong>Stock disponible:</strong> 18 unidades</li>
-                    </ul>
+       <!--boton para volver al catalogo-->
+       <section class="content-section" aria-labelledby="producto-titulo">
+           <a class="back-link" href="estructura.html#catalogo">← Volver al catálogo</a>
 
-                    <p>
-                        <strong>Estado:</strong> Disponible para compra.
-                    </p>
-                </article>
-            </div>
-        </section>
-    </main>
-    <p></p>
-    <p></p>
-    <p></p>
-    <hr/>
 
-    <footer class="site-footer" id="contacto">
-        <div class="footer-grid">
-            <section aria-labelledby="contacto-titulo">
-                <h2 id="contacto-titulo">Contacto</h2>
-                <address>
-                    Av. Argentina 233<br>
-                    Neuquén Capital, Argentina<br>
-                    Tel.: <a href="tel:+540000000000">+54 000 000 0000</a><br>
-                    Email: <a href="mailto:contacto@vinoteca.com">contacto@vinoteca.com</a>
-                </address>
-            </section>
+           <div class="detail-layout">
 
-            <section aria-labelledby="horarios-titulo">
-                <h2 id="horarios-titulo">Horarios</h2>
-                <p>Lunes a sábado<br>10:00 a 21:00</p>
-            </section>
 
-            <section aria-labelledby="redes-titulo">
-                <h2 id="redes-titulo">Redes sociales</h2>
-                <ul class="social-list">
-                    <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
-                    <li><a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a></li>
-                    <li><a href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok</a></li>
-                </ul>
-            </section>
-        </div>
+               <!--imagen del producto-->
+               <div>
+                   <img
+                       class="detail-image"
+                       src="img/vino.jpg"
+                       alt="Botella de vino tinto Malbec Reserva">
+               </div>
 
-        <p class="copyright">
-            © 2026 Grupo Vinoteca. Laboratorio Programación
-        </p>
-    </footer>
+
+               <!--detalles del producto-->
+               <article class="detail-content">
+                   <span class="product-type">Vino tinto</span>
+                   <h2 id="producto-titulo">viña de balbo Reserva</h2>
+
+
+                   <p>
+                       El Gran Tinto presenta un desarrollo enológico más cuidado,
+                       con selección especial de uvas y un perﬁl más intenso,
+                       elaborado por nuestro equipo enológico para elevar la experiencia tradicional del tinto de mesa argentino.
+                   </p>
+
+
+                   <p class="price">$21.000</p>
+
+
+                   <h3>Información del producto</h3>
+
+
+                   <!--hay alguna forma de listar elementos sin que se vean los puntitos o numeros?-->
+                   <ul class="info-list">
+                       <li><strong>Presentación:</strong> botella de 750 ml</li>
+                       <li><strong>Tipo:</strong> vino tinto</li>
+                       <li><strong>Variedad:</strong> Magnum</li>
+                       <li><strong>Stock disponible:</strong> 18 unidades</li>
+                   </ul>
+
+
+                   <p>
+                       <strong>Estado:</strong> Disponible para compra.
+                   </p>
+               </article>
+           </div>
+       </section>
+   </main>
+   <hr/>
+
+
+
+
+<!--información de contacto-->
+   <footer class="site-footer" id="contacto">
+       <div class="footer-grid">
+           <section aria-labelledby="contacto-titulo">
+               <h2 id="contacto-titulo">Contacto</h2>
+               <address>
+                   Av. Argentina 233<br>
+                   Neuquén Capital, Argentina<br>
+                   Tel.: <a href="tel:+540000000000">+54 000 000 0000</a><br>
+                   Email: <a href="mailto:contacto@vinoteca.com">contacto@vinoteca.com</a>
+               </address>
+           </section>
+
+
+           <section aria-labelledby="horarios-titulo">
+               <h2 id="horarios-titulo">Horarios</h2>
+               <p>Lunes a sábado<br>10:00 a 21:00</p>
+           </section>
+
+
+           <section aria-labelledby="redes-titulo">
+               <h2 id="redes-titulo">Redes sociales</h2>
+               <ul class="social-list">
+                   <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+                   <li><a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a></li>
+                   <li><a href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok</a></li>
+               </ul>
+           </section>
+       </div>
+
+
+       <p class="copyright">
+           © 2026 Grupo Vinoteca. Laboratorio Programación
+       </p>
+   </footer>
 </div>
 </body>
 </html>
+
