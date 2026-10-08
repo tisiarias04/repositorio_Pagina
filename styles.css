@@ -90,7 +90,7 @@ input:focus-visible {
     padding: .75rem 1rem;
 
     background: var(--blanco);
-    color: var(--texto);
+    color: var(--blanco);
 
     /*Redondea las esquinas inferiores.*/
     border-radius: 0 0 8px 8px;
@@ -381,6 +381,11 @@ body > section {
     text-decoration: underline;
 }
 
+.tablas{
+    width: 800px; 
+    border-collapse: separate; 
+    border-spacing: 10px"
+}
 
 /*Selecciona formularios (para ingresar valores minimos y maximos) dentro de .filtro. en estructura.html*/
 .filtro form {
