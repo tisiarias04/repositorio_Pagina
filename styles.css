@@ -769,4 +769,16 @@ hr {
     border-top: 1px solid rgba(255,255,255,.2);
 
     font-size: .9rem;
+<<<<<<< Updated upstream
+=======
+}
+/* Enlace para volver al catálogo */
+.back-link {
+    color: var(--blanco);
+    text-decoration: none;
+}
+
+.back-link {
+    color: var(--blanco);
+>>>>>>> Stashed changes
 }
