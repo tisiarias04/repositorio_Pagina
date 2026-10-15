@@ -1,0 +1,392 @@
+/*
+   :root representa el elemento raíz del documento HTML.
+   Normalmente es <html>.
+
+   Acá definimos VARIABLES CSS, lo que permite reutilizar los mismos colores en todo
+   el archivo sin tener que escribir el código hexadecimal todo el tiempo
+*/
+:root {
+    --bordo: #6f1d2a;
+    --bordo-oscuro: #4b111b;
+    --crema: #f6eddc;
+    --crema-claro: #fffaf0;
+    --texto: #2f2420;
+    --gris: #666;
+    --dorado: #b58a45;
+    --blanco: #fff;
+}
+
+/*Afecta a todas los elementos de ambos html*/
+* {
+    /*hace que el padding y el borde estén incluidos dentro del ancho/alto especificado.*/
+    box-sizing: border-box;
+}
+
+
+/*Afecta a todas los elementos de ambos html*/
+html {
+    /*smooth hace que cuando hagamos clic (en un enlace por ejemplo) el desplazamiento sea suave.*/
+    scroll-behavior: smooth;
+}
+
+
+/*selecciona el cuerpo completo de la página. Se usa en ambos HTML*/
+body {
+
+    /*Elimina el margen que los navegadores agregan automáticamente al <body>*/
+    margin: 0;
+
+    /*Evita que el contenido sea demasiado pequeño horizontalmente*/
+    min-width: 320px;
+
+    /*Fondo general de la página color bordo*/
+    background: var(--bordo);
+
+    /*Color general del texto.*/
+    color: var(--texto);
+
+    /*Fuente principal.*/
+    font-family: Arial, Helvetica, sans-serif;
+
+    /*Altura de línea.*/
+    line-height: 1.5;
+}
+
+
+/*Selecciona todos los enlaces y les da el color del elemento padre que los contiene*/
+a {
+    color: inherit;
+}
+
+
+/*Se utiliza en ambos html, lo que hace es modificar un enlace cuando se activa*/
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+
+    /*agrega un contorno dorado alrededor del elemento*/
+    outline: 3px solid var(--dorado);
+
+    /*Separa un poco el contorno del elemento*/
+    outline-offset: 3px;
+}
+
+/*Afecta a la etiqueta header de ambos html*/
+header {
+
+    /*Permite posicionar elementos internos de forma absoluta tomando este header como referencia.*/
+    position: relative;
+
+    /*Altura mínima del encabezado.*/
+    min-height: 390px;
+
+    /*Activa Flexbox.*/
+    display: flex;
+
+    /*Coloca los elementos hijos uno debajo del otro.*/
+    flex-direction: column;
+
+    /*Envía el contenido hacia la parte inferior del header.*/
+    justify-content: flex-end;
+
+    /*Espaciado interno:
+      arriba: 7rem; izquierda/derecha: 7%; abajo: 3.5rem*/
+    padding: 7rem 7% 3.5rem;
+
+    /*Texto blanco dentro del header*/
+    color: var(--blanco);
+
+    /*Fondo compuesto por DOS capas: Un degradado oscuro y una imagen*/
+    background:
+
+        /*Capa oscura sobre la imagen (sirve para que el texto se pueda leer mejor)*/
+        linear-gradient(
+            rgba(45,8,16,.4),
+            rgba(45,8,16,.75)
+        ),
+
+        /*Imagen de fondo*/
+        url("../img/fondo.jpg")
+
+        /*centro la imagen y hago que cubra el header*/
+        center / cover;
+}
+
+/*Selecciona elementos con clase "detail-layout" y aplica un diseño de cuadrícula (grid) con dos columnas iguales y un espacio entre ellas. Se usa en paginaProducto.html*/
+.detail-layout {
+
+    /*Activa CSS Grid*/
+    display: grid;
+
+    /*Crea dos columnas iguales, una para la imagen y otra para la información del producto.*/
+    grid-template-columns: 1fr 1fr;
+
+    /*Espacio entre las dos columnas*/
+    gap: 2.5rem;
+}
+
+/*Selecciona elementos con clase "top-menu" y los posiciona de manera absoluta en la parte superior del header, utilizando Flexbox para distribuir los elementos dentro del menú*/
+.top-menu {
+
+    /*Permite colocar el menú encima del header*/
+    position: absolute;
+
+    top: 1rem;
+    left: 0;
+    right: 0;
+
+    /*Flexbox*/
+    display: flex;
+
+    /*Un grupo queda a la izquierda y otro a la derecha*/
+    justify-content: space-between;
+
+    /*Centra verticalmente los elementos*/
+    align-items: center;
+
+    padding: 0 3%;
+}
+
+/*Selecciona elementos con la clase "top-menu-group" y los organiza en una fila utilizando Flexbox, alineando los elementos verticalmente y agregando un espacio entre ellos.*/
+.top-menu-group {
+
+    display: flex;
+
+    align-items: center;
+
+    /*Espacio entre los botones*/
+    gap: .6rem;
+}
+
+/*Selecciona los elemntso con la clase "menu-link" y les aplica un estilo de botón con borde, fondo semitransparente, color de texto blanco y sin subrayado, además de un tamaño de fuente específico.*/
+.menu-link {
+
+    display: inline-flex;
+    align-items: center;
+
+    padding: .6rem .8rem;
+
+    /*Borde blanco semitransparente.*/
+    border: 1px solid rgba(255,255,255,.65);
+
+    border-radius: 8px;
+
+    /*Fondo bordo semitransparente.*/
+    background: rgba(75,17,27,.82);
+
+    color: var(--blanco);
+
+    /*Quita el subrayado típico de los enlaces.*/
+    text-decoration: none;
+
+    font-size: .95rem;
+}
+
+/*Selecciona elementos con la clase "menu-link" cuando el usuario pasa el cursor sobre ellos, cambiando el fondo a un color más oscuro para indicar interactividad.*/
+.menu-link:hover {
+
+    /*Oscurece el fondo.*/
+    background: var(--bordo-oscuro);
+}
+
+/*Selecciona elementos con la clase "brand" y establece un ancho máximo de 760 píxeles para limitar su tamaño en pantallas grandes,
+  asegurando que el contenido se mantenga legible y bien presentado. Afecta a la sección de marca en ambos HTML.*/
+.brand {
+    max-width: 760px;
+}
+
+/* Selecciona unicamente el primer párrafo dentro de la sección de marca, 
+   aplicando estilos específicos como margen, transformación de texto a mayúsculas, espaciado entre letras
+   y tamaño de fuente para mejorar la presentación visual del contenido. Afecta al html de estructura*/
+.brand p:first-child {
+
+    margin: 0 0 .5rem;
+
+    /*
+       Convierte el texto en mayúsculas visualmente.
+    */
+    text-transform: uppercase;
+
+    /*
+       Aumenta el espacio entre letras.
+    */
+    letter-spacing: .16em;
+
+    font-size: .8rem;
+}
+
+
+/* Selecciona el título principal de la marca y le aplica estilos específicos como 
+   color, fuente, tamaño de fuente responsive y altura de línea para mejorar la presentación visual del contenido.
+   Afecta al html de estructura*/
+.brand h1 {
+
+    margin: 0;
+
+    color: var(--blanco);
+
+    /*Georgia para darle un aspecto más elegante.*/
+    font-family: Georgia, "Times New Roman", serif;
+
+    /*clamp permite que el tamaño sea responsive.
+    mínimo: 3rem; preferido: 8vw; máximo: 6rem*/
+    font-size: clamp(3rem, 8vw, 6rem);
+
+    line-height: .95;
+}
+
+
+article {
+
+    /*Hace que la tarjeta ocupe todo el alto disponible de su celda*/
+    height: 100%;
+   
+
+    padding: 1rem;
+
+    border: 1px solid #e1d3bb;
+
+    border-radius: 12px;
+
+    background: var(--crema-claro);
+
+    /*Centra horizontalmente el contenido de la tarjeta*/
+    text-align: center;
+
+    box-shadow: 0 5px 18px rgba(75,17,27,.08);
+}
+
+hr {
+
+    /*El ancho máximo es 1100px*/
+    width: min(1100px, 90%);
+
+    /*Centra la línea*/
+    margin: 0 auto;
+
+    /*Elimina el borde predeterminado*/
+    border: 0;
+
+    /*Crea nuestra propia línea superior*/
+    border-top: 1px solid rgba(75,17,27,.2);
+}
+
+/* Selecciona el footer de la pagina con clase site-footer y le aplica estilos específicos como relleno, fondo, color de texto y otros 
+   para mejorar la apariencia visual del pie de página. Se utiliza principalmente en estructura.html y paginaProducto.html si tienen la clase "site-footer"*/
+.site-footer {
+
+    padding: 3rem 7%;
+
+    /*
+       Fondo bordo oscuro.
+    */
+    background: var(--bordo-oscuro);
+
+    color: var(--blanco);
+}
+
+/* Selecciona los elementos con la clase "footer-grid" y les aplica un diseño de cuadrícula (grid) con tres columnas, 
+   centrando el contenido y agregando un espacio entre las columnas para mejorar la presentación visual del pie de página.
+   Se usa en estructura.html*/
+.footer-grid {
+
+    width: min(1100px, 100%);
+
+    /*Centra el contenido*/
+    margin: 0 auto;
+
+    display: grid;
+
+    /*Tres columnas*/
+    grid-template-columns: 1.2fr 1fr 1fr;
+
+    gap: 2rem;
+}
+
+/* Selecciona todos los <h2> dentro de .site-footer y les aplica un margen superior, color de texto y fuente específica para mejorar la apariencia visual de los títulos en el pie de página.
+   Se utiliza principalmente en estructura.html*/
+.site-footer h2 {
+
+    margin-top: 0;
+
+    color: var(--blanco);
+
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+
+/* Selecciona las etiquetas adress dentro del footer y les aplica un estilo de fuente normal, eliminando el estilo cursiva que algunos navegadores aplican por defecto a <address>.
+   Se usa en estructura.html y paginaProducto.html*/
+
+.site-footer address {
+    /* Elimina el estilo cursiva que algunos navegadores
+       aplican por defecto a <address>*/
+    font-style: normal;
+}
+
+
+/*Selecciona todos los enlaces dentro del footer. Usado en estructura.html y paginaProducto.html*/
+.site-footer a {
+    color: var(--blanco);
+}
+
+
+/*Efecto cuando pasamos el mouse sobre los enlaces del footer*/
+.site-footer a:hover {
+    color: #f0d59e;
+}
+
+
+/* Selecciona los enlaces de redes sociales dentro del footer y les aplica un diseño de lista horizontal 
+   utilizando Flexbox, eliminando las viñetas y agregando un espacio entre los elementos para mejorar la presentación visual de los enlaces sociales.
+   Se usa en estructura.html y paginaProducto.html*/
+.social-list {
+
+    display: flex;
+
+    /*Permite que los elementos pasen a otra línea si no hay espacio*/
+    flex-wrap: wrap;
+
+    gap: .8rem;
+
+    margin: 0;
+
+    padding: 0;
+
+    /*Elimina las viñetas*/
+    list-style: none;
+}
+
+
+/* Selecciona todos los enlaces dentro de los elementos con clase social-list y les aplica un estilo de botón con borde, 
+   fondo semitransparente, color de texto blanco y sin subrayado, además de un tamaño de fuente específico.
+   Se usa en ambos archivos html*/
+.social-list a {
+
+    display: inline-block;
+
+    padding: .5rem .75rem;
+
+    border: 1px solid rgba(255,255,255,.45);
+
+    border-radius: 7px;
+
+    text-decoration: none;
+}
+
+
+/* Selecciona elementos con la clase "copyright" y les aplica un ancho máximo, centrado, relleno superior, borde superior y tamaño de fuente 
+   Se usa en ambos archivos html*/
+.copyright {
+
+    width: min(1100px, 100%);
+
+    margin: 2rem auto 0;
+
+    padding-top: 1.5rem;
+
+    /*Línea superior que separa el copyright del resto del footer*/
+    border-top: 1px solid rgba(255,255,255,.2);
+
+    font-size: .9rem;
+}
