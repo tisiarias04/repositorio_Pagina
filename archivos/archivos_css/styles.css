@@ -140,24 +140,13 @@ header {
         ),
 
         /*Imagen de fondo*/
-        url("img/fondo.jpg")
+        url("../img/fondo.jpg")
 
         /*centro la imagen y hago que cubra el header*/
         center / cover;
 }
 
-/*Selecciona elementos con clase "detail-layout" y aplica un diseño de cuadrícula (grid) con dos columnas iguales y un espacio entre ellas. Se usa en paginaProducto.html*/
-.detail-layout {
 
-    /*Activa CSS Grid*/
-    display: grid;
-
-    /*Crea dos columnas iguales, una para la imagen y otra para la información del producto.*/
-    grid-template-columns: 1fr 1fr;
-
-    /*Espacio entre las dos columnas*/
-    gap: 2.5rem;
-}
 
 /*Selecciona elementos con clase "top-menu" y los posiciona de manera absoluta en la parte superior del header, utilizando Flexbox para distribuir los elementos dentro del menú*/
 .top-menu {
@@ -544,26 +533,29 @@ article:hover {
 }
 
 
+
 /*Selecciona las imágenes de los productos en estructura.html si están dentro de <article>*/
-article img {
-
-    display: block;
-
-    /*Ocupa todo el ancho disponible.
-       !important sobrescribe los width del HTML como:
-           width="230px"; width="200px"; width="90px"*/
-    width: 100% !important;
-
-    /*Altura fija*/
+/* Imágenes de productos */
+.contenedor-imagen {
+    width: 100%;
     height: 260px;
-
-    /*Mantiene la proporción de la imagen y evita que se deforme*/
-    object-fit: contain;
-
-    margin: 0 auto 1rem;
-
-    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 1rem;
 }
+
+.contenedor-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+
+
+
 
 
 /* Selecciona los párrafos dentro de cada producto en estructura.html. 
