@@ -209,6 +209,27 @@ header {
     outline-offset: 3px;
 }
 
+.back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    padding: .65rem 1rem;
+
+    background: var(--bordo);
+    color: var(--blanco);
+
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: background-color .2s ease,
+                transform .2s ease;
+}
+
+.back-link:hover {
+    background: var(--bordo-oscuro);
+    transform: translateY(-2px);
+}
+
 /* Adaptación a pantallas pequeñas */
 @media (max-width: 480px) {
     .top-menu {
@@ -883,4 +904,276 @@ hr {
     border-top: 1px solid rgba(255,255,255,.2);
 
     font-size: .9rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   DISEÑO RESPONSIVE PARA LA VINOTECA
+   Se agrega al final de styles.css
+   ===================================================== */
+
+
+/* 1. Evitar desbordamientos horizontales */
+html {
+    max-width: 100%;
+}
+
+body {
+    width: 100%;
+    min-width: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* 2. Encabezado adaptable */
+header {
+    padding-left: clamp(1rem, 5vw, 7%);
+    padding-right: clamp(1rem, 5vw, 7%);
+}
+
+.brand {
+    width: 100%;
+    max-width: 760px;
+}
+
+.brand .subtitle {
+    max-width: 100%;
+}
+
+
+/* 3. Contenido principal */
+body > section {
+    width: 100%;
+    max-width: 1180px;
+    padding: clamp(1rem, 4vw, 3rem);
+    min-width: 0;
+}
+
+
+/* 4. Tarjetas y fotografías */
+article {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+article img {
+    max-width: 100%;
+}
+
+.contenedor-imagen {
+    width: 100%;
+    min-width: 0;
+}
+
+.contenedor-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* 5. Catálogo: conservar las tablas en escritorio */
+body > section > table {
+    width: 100% !important;
+    max-width: 100%;
+    table-layout: fixed;
+}
+
+body > section > table td {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+
+/* 6. Filtros y footer */
+.filtro {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.footer-grid {
+    grid-template-columns: 1.2fr 1fr 1fr;
+}
+
+.footer-grid > section {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+
+/* =====================================================
+   TABLETS Y VENTANAS MEDIANAS
+   Hasta 900 píxeles de ancho
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    /* Dos columnas para los filtros */
+    .filtro {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    /* Las tarjetas del catálogo se reorganizan en dos columnas */
+    body > section > table {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        border-spacing: 0;
+    }
+
+    body > section > table tbody {
+        display: contents;
+    }
+
+    body > section > table tr {
+        display: contents;
+    }
+
+    body > section > table td {
+        display: block;
+        width: auto;
+        padding: 0;
+    }
+
+    /* Footer en dos columnas */
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Detalle de producto, si utiliza detail-layout */
+    .detail-layout {
+        gap: 1.5rem;
+    }
+
+}
+
+
+/* =====================================================
+   TELÉFONOS CELULARES
+   Hasta 600 píxeles de ancho
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    /* Encabezado */
+    header {
+        min-height: 330px;
+        padding-top: 6rem;
+        padding-bottom: 2rem;
+    }
+
+    .brand h1 {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+        overflow-wrap: anywhere;
+    }
+
+    .brand .subtitle {
+        font-size: 1rem;
+    }
+
+    /* Menú fijo */
+    .top-menu {
+        padding: 0.5rem 3%;
+    }
+
+    .top-menu-group {
+        gap: 0.4rem;
+    }
+
+    .menu-link {
+        width: 42px;
+        height: 42px;
+    }
+
+    /* Contenido principal */
+    body > section {
+        padding: 1.25rem 1rem;
+    }
+
+    body > section > h2 {
+        font-size: 1.6rem;
+    }
+
+    /* Una sola columna de productos */
+    body > section > table {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1rem;
+    }
+
+    /* Filtros apilados verticalmente */
+    .filtro {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 1rem;
+    }
+
+    .filtro form {
+        max-width: 100%;
+    }
+
+    .filtro input {
+        max-width: 100%;
+    }
+
+    /* Imágenes de productos */
+    .contenedor-imagen {
+        height: 220px;
+    }
+
+    article img {
+        height: 220px;
+    }
+
+    /* Formularios dentro de las tarjetas */
+    article form {
+        flex-wrap: wrap;
+    }
+
+    /* Buscador */
+    .busqueda-campos {
+        flex-direction: column;
+    }
+
+    .busqueda-campos input,
+    .busqueda-campos button {
+        width: 100%;
+    }
+
+    /* Footer */
+    .site-footer {
+        padding: 2rem 1.25rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.5rem;
+    }
+
+    .social-list {
+        gap: 0.5rem;
+    }
+
+    .copyright {
+        overflow-wrap: anywhere;
+    }
+
+    /* Detalle de producto */
+    .detail-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
 }
