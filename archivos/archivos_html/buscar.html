@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+
+
+
+
+ <head>
+   <title>Vinoteca</title>
+   <link rel="stylesheet" href="../archivos_css/styles.css">
+ </head>
+
+
+
+
+ <body>
+
+
+
+
+   <header>
+        <!-- Barra de navegación fija -->
+        <nav class="top-menu" aria-label="Menú principal">
+
+            <!-- Botón de contacto: baja hasta el footer -->
+            <div class="top-menu-group">
+                <a class="menu-link"
+                href="#contacto"
+                aria-label="Ir a la información de contacto"
+                title="Contacto">
+                    <span aria-hidden="true">👤</span>
+                </a>
+            </div>
+
+            <!-- Botones de búsqueda y carrito -->
+            <div class="top-menu-group">
+
+                <!-- Abre buscar.html en la misma pestaña -->
+                <a class="menu-link"
+                href="buscar.html"
+                aria-label="Buscar productos"
+                title="Buscar">
+                    <span aria-hidden="true">🔍</span>
+                </a>
+
+                <!-- Abre carrito.html en la misma pestaña -->
+                <a class="menu-link"
+                href="carrito.html"
+                aria-label="Ver carrito de compras"
+                title="Carrito de compras">
+                    <span aria-hidden="true">🛒</span>
+                </a>
+
+            </div>
+        </nav>
+        <!-- titulo y subtitulo de la página -->
+     <div id="brand" class="brand">
+       <p>Vinos · Aperitivos · Bebidas Blancas · Selección</p>
+       <h1>Vinoteca</h1>
+       <p class="subtitle">
+         Un espacio para descubrir vinos, licores y bebidas seleccionadas, con
+         información de precios y stock disponible.
+       </p>
+     </div>
+   </header>
+
+
+   <!-- a futuro, permite realizar busquedas mediante filtrado-->
+   <section>
+            <a class="back-link" href="estructura.html#catalogo"> ← Volver al catálogo</a>
+
+        <!-- Barra de búsqueda de productos -->
+        <form class="barra-busqueda" action="estructura.html" method="get">
+            <label for="buscar-producto">¿Qué producto estás buscando?</label>
+
+            <div class="busqueda-campos">
+                <input
+                    type="search"
+                    id="buscar-producto"
+                    name="q"
+                    placeholder="Ej.: Malbec, vodka, whisky..."
+                    aria-label="Nombre o palabra clave del producto"
+                >
+
+                <button type="submit">Buscar</button>
+            </div>
+        </form>
+
+        <div class="filtro">
+           <div class="filtro-precio" >
+               <h3>Precio</h3>
+               <ul >
+                   <li>
+                       <a href="#Aperitivos" title="Hasta $15.000"
+                          style="color:gray; text-decoration: none">Hasta $15.000
+                       </a>
+                   </li>
+                   <li>
+                       <a href="#Vodkas" title="15.000-20.000"
+                          style="color:gray; text-decoration: none">Entre $15.000 y $20.000
+                       </a>
+                   </li>
+                   <li>
+                       <a href="#vinos" title="20.000-50.000"
+                          style="color:gray; text-decoration: none">Entre $20.000 y $50.000
+                       </a>
+                   </li>
+                   <li>
+                       <a href="#Whiskies" title="Mas $50.000"
+                          style="color:gray; text-decoration: none">Más de $50.000
+                       </a>
+                   </li>
+                   <li>
+                       <form>
+                           <input name="min" placeholder="Min" type="number" min="0" maxlength="6">
+                           <span>-</span>
+                           <input name="max" placeholder="Max" type="number" min="0" maxlength="6">
+                           <button type="submit">
+                               Aplicar
+                           </button>
+                       </form>
+                       <!-- Esta opcion seria para ingresar manual un minimo y maximo, para filtrar (necesita js) -->
+                   </li>
+               </ul>
+           </div>
+           <div class="filtro-tipo" >
+               <h3>Tipo Bebida</h3>
+               <ul >
+                   <li>
+                       <a href="#Aperitivos" title="aperitivo"
+                          style="color:gray; text-decoration: none">Aperitivos
+                       </a>
+                   </li>
+                   <li>
+                       <a href="#Vodkas" title="Vodkas"
+                          style="color:gray; text-decoration: none">Vodkas
+                       </a>
+                   </li>
+                   <li>
+                       <a href="#vinos" title="vinos"
+                          style="color:gray; text-decoration: none">Vinos
+                       </a>
+                   </li>
+                   <li>
+                       <a href="#Whiskies" title="Whiskies"
+                          style="color:gray; text-decoration: none">Whiskies
+                       </a>
+                   </li>
+               </ul>
+           </div>
+           <div class="filtro-cantidadUnidad" >
+               <h3>Volumen de la unidad</h3>
+               <ul >
+                   <li>
+                       <a href="#" title="Hasta 350mL"
+                          style="color:gray; text-decoration: none">Menos de 350mL
+                       </a>
+                   </li>
+                   <li>
+                       <a href="#" title="350mL-750mL"
+                          style="color:gray; text-decoration: none">Entre 350mL y 750mL
+                       </a>
+                   </li>
+                   <li>
+                       <a href="#" title="750mL-1L"
+                          style="color:gray; text-decoration: none">Entre 750mL y 1L
+                       </a>
+                   </li>
+                   <li>
+                       <a href="#" title="Mas 1L"
+                          style="color:gray; text-decoration: none">1L o más
+                       </a>
+                   </li>
+                   <li>
+                       <form>
+                           <input name="min" placeholder="Min" type="number" min="0">
+                           <span>-</span>
+                           <input name="max" placeholder="Max" type="number" min="0">
+                           <button type="submit">
+                               Aplicar
+                           </button>
+                       </form>
+                       <!-- Esta opcion seria para ingresar manual un minimo y maximo, para filtrar (necesita js) -->
+                   </li>
+               </ul>
+           </div>
+       </div>
+ </section>
+   
+
+   <!--pie de página donde se encuentra la información de contacto-->
+   <footer class="site-footer" id="contacto">
+       <div class="footer-grid">
+           <section aria-labelledby="contacto-titulo">
+               <h2 id="contacto-titulo">Contacto</h2>
+               <address>
+                   Av. Argentina 233<br>
+                   Neuquén Capital, Argentina<br>
+                   Tel.: <a href="tel:+540000000000">+54 000 000 0000</a><br>
+                   Email: <a href="mailto:contacto@vinoteca.com">contacto@vinoteca.com</a>
+               </address>
+           </section>
+
+
+           <section aria-labelledby="horarios-titulo">
+               <h2 id="horarios-titulo">Horarios</h2>
+               <p>Lunes a sábado<br>10:00 a 21:00</p>
+           </section>
+
+
+           <section aria-labelledby="redes-titulo">
+               <h2 id="redes-titulo">Redes sociales</h2>
+               <ul class="social-list">
+                   <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+                   <li><a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a></li>
+                   <li><a href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok</a></li>
+               </ul>
+           </section>
+       </div>
+
+
+       <p class="copyright">
+           © 2026 Grupo Vinoteca. Laboratorio Programación
+       </p>
+   </footer>
+
+
+
+
+ </body>
+</html>

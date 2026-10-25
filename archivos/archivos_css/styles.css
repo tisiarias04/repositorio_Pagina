@@ -148,72 +148,85 @@ header {
 
 
 
-/*Selecciona elementos con clase "top-menu" y los posiciona de manera absoluta en la parte superior del header, utilizando Flexbox para distribuir los elementos dentro del menú*/
+
+/* Barra de navegación fija */
 .top-menu {
-
-    /*Permite colocar el menú encima del header*/
-    position: absolute;
-
-    top: 1rem;
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
+    z-index: 1000;
 
-    /*Flexbox*/
     display: flex;
-
-    /*Un grupo queda a la izquierda y otro a la derecha*/
     justify-content: space-between;
-
-    /*Centra verticalmente los elementos*/
     align-items: center;
 
-    padding: 0 3%;
+    min-height: 68px;
+    padding: 0.65rem 3%;
+
+    background-color: var(--bordo-oscuro);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-
-/*Selecciona elementos con la clase "top-menu-group" y los organiza en una fila utilizando Flexbox, alineando los elementos verticalmente y agregando un espacio entre ellos.*/
+/* Grupos de botones */
 .top-menu-group {
-
     display: flex;
-
     align-items: center;
-
-    /*Espacio entre los botones*/
-    gap: .6rem;
+    gap: 0.75rem;
 }
 
-
-/*Selecciona los elemntso con la clase "menu-link" y les aplica un estilo de botón con borde, fondo semitransparente, color de texto blanco y sin subrayado, además de un tamaño de fuente específico.*/
+/* Botones con símbolos */
 .menu-link {
-
     display: inline-flex;
+    justify-content: center;
     align-items: center;
 
-    padding: .6rem .8rem;
+    width: 46px;
+    height: 46px;
 
-    /*Borde blanco semitransparente.*/
-    border: 1px solid rgba(255,255,255,.65);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
 
-    border-radius: 8px;
-
-    /*Fondo bordo semitransparente.*/
-    background: rgba(75,17,27,.82);
-
+    background-color: var(--bordo);
     color: var(--blanco);
 
-    /*Quita el subrayado típico de los enlaces.*/
+    font-size: 1.4rem;
     text-decoration: none;
 
-    font-size: .95rem;
+    transition: background-color 0.2s ease,
+                transform 0.2s ease;
 }
 
-
-/*Selecciona elementos con la clase "menu-link" cuando el usuario pasa el cursor sobre ellos, cambiando el fondo a un color más oscuro para indicar interactividad.*/
+/* Efecto al pasar el cursor */
 .menu-link:hover {
-
-    /*Oscurece el fondo.*/
-    background: var(--bordo-oscuro);
+    background-color: var(--dorado);
+    transform: translateY(-2px);
 }
+
+/* Accesibilidad al navegar con teclado */
+.menu-link:focus-visible {
+    outline: 3px solid var(--crema);
+    outline-offset: 3px;
+}
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 480px) {
+    .top-menu {
+        min-height: 60px;
+        padding: 0.5rem 4%;
+    }
+
+    .top-menu-group {
+        gap: 0.5rem;
+    }
+
+    .menu-link {
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+    }
+}
+
 
 /*Selecciona elementos con la clase "brand" y establece un ancho máximo de 760 píxeles para limitar su tamaño en pantallas grandes,
   asegurando que el contenido se mantenga legible y bien presentado. Afecta a la sección de marca en ambos HTML.*/
@@ -369,6 +382,81 @@ body > section {
 
     text-decoration: underline;
 }
+
+
+
+
+
+
+/* Barra de búsqueda en buscar.html */
+.barra-busqueda {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border: 1px solid #e0d1b8;
+    border-radius: 12px;
+    background: var(--crema-claro);
+    box-shadow: 0 5px 18px rgba(75, 17, 27, 0.08);
+}
+
+.barra-busqueda label {
+    display: block;
+    margin-bottom: 0.7rem;
+    color: var(--bordo-oscuro);
+    font-weight: bold;
+}
+
+.busqueda-campos {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.busqueda-campos input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.8rem 1rem;
+    border: 1px solid #cbbda5;
+    border-radius: 8px;
+    background: var(--blanco);
+    color: var(--texto);
+    font: inherit;
+}
+
+.busqueda-campos button {
+    padding: 0.8rem 1.3rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--bordo);
+    color: var(--blanco);
+    font-weight: bold;
+    font: inherit;
+    cursor: pointer;
+}
+
+.busqueda-campos button:hover {
+    background: var(--bordo-oscuro);
+}
+
+.busqueda-campos input:focus-visible,
+.busqueda-campos button:focus-visible {
+    outline: 3px solid var(--dorado);
+    outline-offset: 3px;
+}
+
+/* Adaptación para celulares */
+@media (max-width: 480px) {
+    .busqueda-campos {
+        flex-direction: column;
+    }
+
+    .busqueda-campos button {
+        width: 100%;
+    }
+}
+
+
+
+
+
 
 .tablas{
     width: 800px; 
@@ -653,6 +741,40 @@ hr {
     background: var(--bordo-oscuro);
 
     color: var(--blanco);
+}
+
+
+/* Botón para volver al inicio */
+.site-footer > a[href="#brand"] {
+    display: inline-block;
+    margin-bottom: 2rem;
+    padding: 0.7rem 1.2rem;
+
+    background-color: var(--crema);
+    color: var(--bordo-oscuro);
+
+    border: 1px solid var(--dorado);
+    border-radius: 8px;
+
+    font-weight: bold;
+    text-decoration: none;
+
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease;
+}
+
+/* Efecto al pasar el cursor */
+.site-footer > a[href="#brand"]:hover {
+    background-color: var(--dorado);
+    color: var(--blanco);
+    transform: translateY(-2px);
+}
+
+/* Indicador visible al navegar con teclado */
+.site-footer > a[href="#brand"]:focus-visible {
+    outline: 3px solid var(--blanco);
+    outline-offset: 4px;
 }
 
 
