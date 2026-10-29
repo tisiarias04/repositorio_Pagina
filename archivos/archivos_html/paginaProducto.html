@@ -63,56 +63,15 @@
    <main id="contenido">
 
        <!--boton para volver al catalogo-->
-       <section class="content-section" aria-labelledby="producto-titulo">
-           <a class="back-link" href="estructura.html#catalogo">← Volver al catálogo</a>
+       <section class="content-section">
+            <a class="back-link" href="estructura.html#catalogo">
+                ← Volver al catálogo
+            </a>
 
-
-           <div class="detail-layout">
-
-
-               <!--imagen del producto-->
-               <div class="contenedor-imagen">
-                   <img
-                       class="detail-image"
-                       src="../img/vino.jpg"
-                       alt="Botella de vino tinto Malbec Reserva">
-               </div>
-
-
-               <!--detalles del producto-->
-               <article class="detail-content">
-                   <span class="product-type">Vino tinto</span>
-                   <h2 id="producto-titulo">viña de balbo Reserva</h2>
-
-
-                   <p>
-                       El Gran Tinto presenta un desarrollo enológico más cuidado,
-                       con selección especial de uvas y un perﬁl más intenso,
-                       elaborado por nuestro equipo enológico para elevar la experiencia tradicional del tinto de mesa argentino.
-                   </p>
-
-
-                   <p class="price">$21.000</p>
-
-
-                   <h3>Información del producto</h3>
-
-
-                   <!--hay alguna forma de listar elementos sin que se vean los puntitos o numeros?-->
-                   <ul class="info-list">
-                       <li><strong>Presentación:</strong> botella de 750 ml</li>
-                       <li><strong>Tipo:</strong> vino tinto</li>
-                       <li><strong>Variedad:</strong> Magnum</li>
-                       <li><strong>Stock disponible:</strong> 18 unidades</li>
-                   </ul>
-
-
-                   <p>
-                       <strong>Estado:</strong> Disponible para compra.
-                   </p>
-               </article>
-           </div>
-       </section>
+            <div id="detalle-producto">
+                <p>Cargando producto...</p>
+            </div>
+        </section>
    </main>
    <hr/>
 
@@ -155,6 +114,10 @@
        </p>
    </footer>
 </div>
+<script src="../archivos_js/productos.js" defer></script>
+<script src="../archivos_js/pagina-producto.js" defer></script>
+<script src="../archivos_js/catalogo.js" defer></script>
+<script src="../archivos_js/vinoteca.js" defer></script>
 </body>
 </html>
 

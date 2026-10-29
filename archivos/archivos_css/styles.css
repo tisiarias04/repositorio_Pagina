@@ -1015,6 +1015,130 @@ body > section > table td {
 }
 
 
+
+
+
+/* Secciones de categorías del catálogo. */
+#lista-productos .categoria-productos {
+    margin: 2rem auto;
+    width: 100%;
+}
+
+/* Título de cada categoría. */
+#lista-productos .categoria-titulo {
+    margin-bottom: 1.25rem;
+    color: var(--bordo-oscuro);
+    border-bottom: 2px solid var(--dorado);
+    padding-bottom: 0.5rem;
+}
+
+/* Tres productos por fila en pantallas grandes. */
+#lista-productos .productos-grilla {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    align-items: stretch;
+}
+
+/* Tarjetas individuales. */
+#lista-productos .product-card {
+    min-width: 0;
+    padding: 1rem;
+    background-color: var(--crema-claro);
+    border: 1px solid #e1d2bd;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* Todas las imágenes tienen un contenedor de tamaño controlado. */
+#lista-productos .contenedor-imagen {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blanco);
+    border-radius: 6px;
+}
+
+/* La imagen se adapta al espacio sin deformarse. */
+#lista-productos .contenedor-imagen img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Evita que los textos largos desborden las tarjetas. */
+#lista-productos .product-name {
+    overflow-wrap: anywhere;
+}
+
+/* Botones y enlaces dentro de las tarjetas. */
+#lista-productos .product-card button,
+#lista-productos .product-card .detail-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+/* Dos columnas en tabletas. */
+@media (max-width: 900px) {
+    #lista-productos .productos-grilla {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Una columna en celulares pequeños. */
+@media (max-width: 550px) {
+    #lista-productos .productos-grilla {
+        grid-template-columns: 1fr;
+    }
+
+    #lista-productos .contenedor-imagen {
+        height: 220px;
+    }
+}
+
+
+
+
+
+
+
+
+/* Título principal del catálogo */
+#catalogo > h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: bold;
+    color: var(--crema);
+    text-align: center;
+    margin: 2rem 0;
+    padding-bottom: 1rem;
+    
+}
+
+
+
+/* Títulos de las categorías: Aperitivos, Vinos, Vodkas, etc. */
+#lista-productos .categoria-titulo {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: bold;
+    color: var(--crema);/*cambiar*/
+    
+}
+
+
+
+
+
+
+
+
+
 /* =====================================================
    TABLETS Y VENTANAS MEDIANAS
    Hasta 900 píxeles de ancho

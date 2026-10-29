@@ -396,9 +396,53 @@ hr {
 
 
 
+/* Distribución del detalle: imagen a la izquierda,
+   información del producto a la derecha. */
+#detalle-producto .detail-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 2rem;
+    width: 100%;
+}
+
+/* Contenedor de la imagen del producto. */
+#detalle-producto .contenedor-imagen {
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blanco);
+    border-radius: 8px;
+}
+
+/* La imagen no puede desbordar el contenedor. */
+#detalle-producto .contenedor-imagen img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
 
 
+/* Información del producto. */
+#detalle-producto .detail-content {
+    min-width: 0;
+}
+
+/* Adaptación para pantallas pequeñas. */
+@media (max-width: 700px) {
+    #detalle-producto .detail-layout {
+        grid-template-columns: 1fr;
+    }
+
+    #detalle-producto .contenedor-imagen {
+        height: 320px;
+    }
+}
 
 
 
