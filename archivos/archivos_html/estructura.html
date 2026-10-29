@@ -1,19 +1,28 @@
-<!doctype html>
+div<!doctype html>
 <html>
 
 
 
 
+<<<<<<< HEAD
 <head>
   <title>Vinoteca</title>
   <link rel="stylesheet" href="../archivos_css/styles.css">
 </head>
+=======
+ <head>
+   <title>Vinoteca</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../archivos_css/styles.css">
+ </head>
+>>>>>>> ramaTisi
 
 
 
 
 <body>
 
+<<<<<<< HEAD
   <a class="skip-link" href="#contenido">Saltar al contenido principal</a> <!-- revisar-->
 
 
@@ -26,23 +35,66 @@
           📍 Contacto
         </a>
       </div>
+=======
+        <a class="skip-link" href="#contenido">Saltar al contenido principal</a> <!-- revisar-->
 
 
+
+        <header>
+                <!-- Barra de navegación fija -->
+                <nav class="top-menu" aria-label="Menú principal">
+>>>>>>> ramaTisi
+
+                    <!-- Botón de contacto: baja hasta el footer -->
+                    <div class="top-menu-group">
+                        <a class="menu-link"
+                        href="#contacto"
+                        aria-label="Ir a la información de contacto"
+                        title="Contacto">
+                            <span aria-hidden="true">👤</span>
+                        </a>
+                    </div>
+
+<<<<<<< HEAD
       <!--a futuro, permite realizar busqueda de elementos por nombre-->
       <div class="top-menu-group">
         <a class="menu-link" href="#buscar" aria-label="Ir al buscador de productos">
           🔎 Buscar
         </a>
+=======
+                    <!-- Botones de búsqueda y carrito -->
+                    <div class="top-menu-group">
+>>>>>>> ramaTisi
 
+                        <!-- Abre buscar.html en la misma pestaña -->
+                        <a class="menu-link"
+                        href="buscar.html"
+                        aria-label="Buscar productos"
+                        title="Buscar">
+                            <span aria-hidden="true">🔍</span>
+                        </a>
 
+<<<<<<< HEAD
         <!--a futuro, permite ver el carro de compras con los elementos seleccionados hasta el momento-->
         <a class="menu-link" href="#" aria-label="Ver carrito de compras">
           🛒 Carrito <span aria-label="0 productos en el carrito">(0)</span>
         </a>
       </div>
     </nav>
+=======
+                        <!-- Abre carrito.html en la misma pestaña -->
+                        <a class="menu-link"
+                        href="carrito.html"
+                        aria-label="Ver carrito de compras"
+                        title="Carrito de compras">
+                            <span aria-hidden="true">🛒</span>
+                        </a>
+>>>>>>> ramaTisi
 
+                    </div>
+                </nav>
 
+<<<<<<< HEAD
     <!-- titulo y subtitulo de la página -->
     <div class="brand">
       <p>Vinos · Aperitivos · Bebidas Blancas · Selección</p>
@@ -376,6 +428,48 @@
             </form>
           </article>
         </td>
+=======
+            <!-- titulo y subtitulo de la página -->
+            <div id="brand" class="brand">
+            <p>Vinos · Aperitivos · Bebidas Blancas · Selección</p>
+            <h1>Vinoteca</h1>
+            <p class="subtitle">
+                Un espacio para descubrir vinos, licores y bebidas seleccionadas, con
+                información de precios y stock disponible.
+            </p>
+            </div>
+            
+        </header>
+
+
+        <!-- a futuro, permite realizar busquedas mediante filtrado-->
+        <main id="contenido">
+            <section id="catalogo">
+                <!-- las tablas a partir de acá, sirven para mostrar los distintos elementos que se pueden comprar, por ende
+                    todas las tablas tienen el mismo código, variando solamente la imagen y el nombre -->
+                <h2>Nuestros productos</h2>
+                <div id="lista-productos"> </div>
+                <!-- fin de tablas iguales-->
+            </section>
+        </main>
+   
+
+   
+
+   <!--pie de página donde se encuentra la información de contacto-->
+   <footer class="site-footer" id="contacto">
+    <a  href="#brand"> Volver a inicio</a>
+       <div class="footer-grid">
+           <section aria-labelledby="contacto-titulo">
+               <h2 id="contacto-titulo">Contacto</h2>
+               <address>
+                   Av. Argentina 233<br>
+                   Neuquén Capital, Argentina<br>
+                   Tel.: <a href="tel:+540000000000">+54 000 000 0000</a><br>
+                   Email: <a href="mailto:contacto@vinoteca.com">contacto@vinoteca.com</a>
+               </address>
+           </section>
+>>>>>>> ramaTisi
 
 
         <td>
@@ -441,8 +535,16 @@
 
 
 
+<<<<<<< HEAD
 
 </body>
 
+=======
+<script src="../archivos_js/productos.js" defer></script>
+<script src="../archivos_js/catalogo.js" defer></script>
+<script src="../archivos_js/vinoteca.js" defer></script>
+<!-- defer hace que el navegador espere a que se analice el HTML antes de ejecutar el js-->
+ </body>
+>>>>>>> ramaTisi
 </html>
 
