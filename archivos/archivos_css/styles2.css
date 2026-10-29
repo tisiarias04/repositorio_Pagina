@@ -393,17 +393,6 @@ hr {
     border-top: 1px solid rgba(255, 255, 255, .2);
     font-size: .9rem;
 }
-<<<<<<< HEAD
-/* Enlace para volver al catálogo */
-.back-link {
-    color: var(--blanco);
-    text-decoration: none;
-}
-
-.back-link {
-    color: var(--blanco);
-}
-=======
 
 
 
@@ -560,4 +549,3 @@ hr {
         overflow-wrap: anywhere;
     }
 }
->>>>>>> ramaTisi

@@ -3,17 +3,12 @@
 
 <head>
    <title>Vino Tinto "Viñas de Balbo"</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="../archivos_css/styles2.css">
 </head>
 
 
 <body>
-<<<<<<< HEAD
 <!--a class="skip-link" href="#contenido">Saltar al contenido principal</a> revisar-->
-=======
- <!-- revisar-->
->>>>>>> ramaTisi
 
 
 
@@ -21,38 +16,14 @@
 <div class="page-shell">
    <header class="site-header">
        <nav class="top-menu" aria-label="Menú principal">
-
-            <!-- Botón de contacto: baja hasta el footer -->
-            <div class="top-menu-group">
-                <a class="menu-link"
-                href="#contacto"
-                aria-label="Ir a la información de contacto"
-                title="Contacto">
-                    <span aria-hidden="true">👤</span>
-                </a>
-            </div>
-
-            <!-- Botones de búsqueda y carrito -->
-            <div class="top-menu-group">
-
-                <!-- Abre buscar.html en la misma pestaña -->
-                <a class="menu-link"
-                href="buscar.html"
-                aria-label="Buscar productos"
-                title="Buscar">
-                    <span aria-hidden="true">🔍</span>
-                </a>
-
-                <!-- Abre carrito.html en la misma pestaña -->
-                <a class="menu-link"
-                href="carrito.html"
-                aria-label="Ver carrito de compras"
-                title="Carrito de compras">
-                    <span aria-hidden="true">🛒</span>
-                </a>
-
-            </div>
-        </nav>
+           <div class="top-menu-group">
+               <a class="menu-link" href="#contacto">📍 Contacto</a>
+           </div>
+           <div class="top-menu-group">
+               <a class="menu-link" href="#buscar">🔎 Buscar</a>
+               <a class="menu-link" href="#carrito" aria-label="Ver carrito de compras">🛒 Carrito (0)</a>
+           </div>
+       </nav>
 
 
        <div class="brand">
@@ -65,15 +36,56 @@
    <main id="contenido">
 
        <!--boton para volver al catalogo-->
-       <section class="content-section">
-            <a class="back-link" href="estructura.html#catalogo">
-                ← Volver al catálogo
-            </a>
+       <section class="content-section" aria-labelledby="producto-titulo">
+           <a class="back-link" href="estructura.html#catalogo">← Volver al catálogo</a>
 
-            <div id="detalle-producto">
-                <p>Cargando producto...</p>
-            </div>
-        </section>
+
+           <div class="detail-layout">
+
+
+               <!--imagen del producto-->
+               <div class="contenedor-imagen">
+                   <img
+                       class="detail-image"
+                       src="../img/vino.jpg"
+                       alt="Botella de vino tinto Malbec Reserva">
+               </div>
+
+
+               <!--detalles del producto-->
+               <article class="detail-content">
+                   <span class="product-type">Vino tinto</span>
+                   <h2 id="producto-titulo">viña de balbo Reserva</h2>
+
+
+                   <p>
+                       El Gran Tinto presenta un desarrollo enológico más cuidado,
+                       con selección especial de uvas y un perﬁl más intenso,
+                       elaborado por nuestro equipo enológico para elevar la experiencia tradicional del tinto de mesa argentino.
+                   </p>
+
+
+                   <p class="price">$21.000</p>
+
+
+                   <h3>Información del producto</h3>
+
+
+                   <!--hay alguna forma de listar elementos sin que se vean los puntitos o numeros?-->
+                   <ul class="info-list">
+                       <li><strong>Presentación:</strong> botella de 750 ml</li>
+                       <li><strong>Tipo:</strong> vino tinto</li>
+                       <li><strong>Variedad:</strong> Magnum</li>
+                       <li><strong>Stock disponible:</strong> 18 unidades</li>
+                   </ul>
+
+
+                   <p>
+                       <strong>Estado:</strong> Disponible para compra.
+                   </p>
+               </article>
+           </div>
+       </section>
    </main>
    <hr/>
 
@@ -116,10 +128,6 @@
        </p>
    </footer>
 </div>
-<script src="../archivos_js/productos.js" defer></script>
-<script src="../archivos_js/pagina-producto.js" defer></script>
-<script src="../archivos_js/catalogo.js" defer></script>
-<script src="../archivos_js/vinoteca.js" defer></script>
 </body>
 </html>
 
