@@ -124,8 +124,10 @@ header {
     justify-content: center;
     align-items: center;
 
-    width: 46px;
-    height: 46px;
+   width:auto;
+   height: 46px;
+   padding: 0 .9rem;
+   gap: .4rem;
 
     border: 1px solid rgba(255, 255, 255, .4);
     border-radius: 10px;
@@ -133,7 +135,7 @@ header {
     background-color: var(--bordo);
     color: var(--blanco);
 
-    font-size: 1.4rem;
+    font-size: 1rem;
     text-decoration: none;
 
     transition: background-color .2s ease,
