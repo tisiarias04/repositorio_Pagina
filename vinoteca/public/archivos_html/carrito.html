@@ -1,0 +1,229 @@
+
+<!--modificado post servidor-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi carrito | Vinoteca</title>
+
+    <link rel="stylesheet" href="../archivos_css/styles.css">
+
+    <style>
+        /* Contenedor principal del carrito */
+        .carrito-seccion {
+            width: min(1100px, 92%);
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--crema-claro, #fffaf0);
+            border: 1px solid #e1d2bd;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .carrito-seccion h2 {
+            color: var(--bordo-oscuro, #4b111b);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Tabla de productos */
+        .tabla-carrito {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tabla-carrito th,
+        .tabla-carrito td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e1d2bd;
+        }
+
+        .tabla-carrito th {
+            color: white;
+            background-color: var(--bordo, #6f1d2a);
+        }
+
+        .tabla-carrito tbody tr:hover {
+            background-color: var(--crema, #f6eddc);
+        }
+
+        /* Imagen de cada producto */
+        .carrito-producto {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .carrito-producto img {
+            width: 75px;
+            height: 90px;
+            object-fit: contain;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        .carrito-nombre {
+            font-weight: bold;
+            color: var(--texto, #2f2420);
+        }
+
+        /* Campo de cantidad */
+        .tabla-carrito input[type="number"] {
+            width: 70px;
+            padding: 0.5rem;
+            border: 1px solid #c9b8a0;
+            border-radius: 5px;
+        }
+
+        /* Botón para quitar un producto */
+        .boton-quitar {
+            color: white;
+            background-color: var(--bordo, #6f1d2a);
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
+        }
+
+        .boton-quitar:hover {
+            background-color: var(--bordo-oscuro, #4b111b);
+        }
+
+        /* Resumen de la compra */
+        .carrito-resumen {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .carrito-total {
+            color: var(--bordo-oscuro, #4b111b);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .carrito-acciones {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        .carrito-acciones button,
+        .carrito-acciones a {
+            display: inline-block;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            border: none;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .boton-seguir {
+            color: var(--bordo, #6f1d2a);
+            background-color: var(--crema, #f6eddc);
+        }
+
+        .boton-vaciar {
+            color: white;
+            background-color: var(--bordo, #6f1d2a);
+        }
+
+        .carrito-vacio {
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--gris, #666);
+        }
+
+        /* Adaptación para celulares */
+        @media (max-width: 700px) {
+            .carrito-seccion {
+                padding: 1rem;
+            }
+
+            .tabla-carrito th,
+            .tabla-carrito td {
+                padding: 0.6rem;
+                font-size: 0.85rem;
+            }
+
+            .carrito-producto {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.4rem;
+            }
+
+            .carrito-producto img {
+                width: 55px;
+                height: 65px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-shell">
+
+        <header class="site-header">
+            <nav class="top-menu">
+                <a class="menu-link" href="estructura.html#contacto">
+                    👤 Contacto
+                </a>
+
+                <a class="menu-link" href="buscar.html">
+                    🔍 Buscar
+                </a>
+
+                <a class="menu-link" href="carrito.html" aria-current="page">
+                    🛒 Carrito (<span data-cart-count>0</span>)
+                </a>
+            </nav>
+
+            <div class="brand">
+                <p>Vinoteca</p>
+                <h1>Mi carrito</h1>
+            </div>
+        </header>
+
+        <main id="contenido">
+            <section class="carrito-seccion">
+                <h2>Productos seleccionados</h2>
+
+                <!-- JavaScript insertará aquí el contenido del carrito -->
+                <div id="carrito-contenido" aria-live="polite">
+                    <p class="carrito-vacio">
+                        Cargando carrito...
+                    </p>
+                </div>
+
+                <div class="carrito-acciones">
+                    <a class="boton-seguir"
+                       href="estructura.html#catalogo">
+                        Seguir comprando
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer" id="contacto">
+            <div>
+                <h3>Contacto</h3>
+                <p>Av. Argentina 233, Neuquén Capital</p>
+                <p>Lunes a sábado: 10:00 a 21:00</p>
+                <p>contacto@vinoteca.com</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!--<script src="../js/productos.js" defer></script>-->
+    <script src="../js/vinoteca.js" defer></script>
+</body>
+</html>
