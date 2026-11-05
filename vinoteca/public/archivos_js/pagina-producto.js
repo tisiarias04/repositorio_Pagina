@@ -1,22 +1,27 @@
 
+//Para cada producto, y utilizando el html de paginaProducto, 
+//muestra los datos del producto seleccionado (imagen, nombre, descripción, precio y 
+// lista de información adicional (tipo, variedad, presentación y stock disponible)) 
 document.addEventListener("DOMContentLoaded", () => {
     const contenedor = document.querySelector("#detalle-producto");
 
     const parametros = new URLSearchParams(window.location.search);
     const id = parametros.get("id");
-
+    //busca el producto en el array PRODUCTOS (de productos.js) que tenga el id que se pasó como parámetro en la URL.
     const producto = PRODUCTOS.find(p => p.id === id);
 
     if (!producto) {
         contenedor.textContent = "No se encontró el producto solicitado.";
     } else {
-        
+        //Crea el contenedor para el producto, con su imagen, nombre, descripción, precio y 
+        // lista de información adicional (tipo, variedad, presentación y stock disponible).
         const layout = document.createElement("div");
         layout.className = "detail-layout";
 
         const contenedorImagen = document.createElement("div");
         contenedorImagen.className = "contenedor-imagen";
 
+        //Obtiene la imagen del producto y la agrega al contenedor de imagen.
         const imagen = document.createElement("img");
         imagen.src = producto.imagen;
         imagen.alt = producto.nombre;
@@ -48,6 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const informacion = document.createElement("ul");
         informacion.className = "info-list";
 
+        //Pone cada uno de los datos del producto 
+        // (tipo, variedad, presentación y stock disponible) en un elemento de lista y 
+        // los agrega a la lista de información.
         [
             `Tipo: ${producto.tipo}`,
             `Variedad: ${producto.variedad}`,

@@ -1,3 +1,5 @@
+//Archivo js encargado de almacenar los productos en un array de objetos y exportarlos para su uso en otros archivos.
+
 
 const PRODUCTOS = [
     {

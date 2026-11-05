@@ -13,11 +13,24 @@
  * el stock en un servidor.
  */
 
+
+
+
+//DIVIDIR EN FUNCIONALIDAD
+
+
+
+
+
+
 (() => {
     'use strict';
+    // Constantes y selectores de elementos del DOM.
 
     const STORAGE_KEY = 'vinoteca_carrito_v1';
 
+    //Selectores que permiten encontrar los elementos del DOM que contienen 
+    // productos, formularios de búsqueda, filtros y el carrito.
     const SELECTORS = {
         cards: '[data-product-id], .product-card, .producto-card, #catalogo article',
         searchForm: '[data-search-form], #form-busqueda, .barra-busqueda',
@@ -32,6 +45,8 @@
 
     let cart = loadCart();
 
+
+
     // Normaliza el texto para comparar sin distinguir
     // mayúsculas, minúsculas ni tildes.
     function normalize(value) {
@@ -41,6 +56,9 @@
             .toLowerCase()
             .trim();
     }
+
+
+
 
     // Convierte precios como "$21.000" en 21000.
     function parsePrice(value) {
@@ -58,7 +76,10 @@
         return Number.isFinite(result) ? result : 0;
     }
 
-    // Muestra los precios en formato monetario argentino.
+
+
+
+    // Muestra los precios en pesos
     function formatPrice(value) {
         return new Intl.NumberFormat('es-AR', {
             style: 'currency',
@@ -67,8 +88,13 @@
         }).format(value);
     }
 
-    // Lee los datos de una tarjeta de producto del HTML.
+
+
+
+    // Lee los datos de una tarjeta de producto del HTML. 
+    //card es un selector que apunta a un elemento del DOM que contiene los datos de un producto.
     function readCard(card) {
+
         const nameElement = card.querySelector(
             '[data-product-name], .product-name, h2, h3, h4'
         );
@@ -98,19 +124,23 @@
                 .replace(/^-|-$/g, '');
 
         return {
-            id,
-            name,
-            price: parsePrice(rawPrice),
-            image: image?.getAttribute('src') || '',
-            detailUrl: detailLink?.getAttribute('href') || '',
-            type: card.dataset.productType || card.dataset.type || '',
-            volume: card.dataset.productVolume || card.dataset.volume || '',
-            searchableText: normalize(card.textContent)
+                id,
+                name,
+                price: parsePrice(rawPrice),
+                image: image?.getAttribute('src') || '',
+                detailUrl: detailLink?.getAttribute('href') || '',
+                type: card.dataset.productType || card.dataset.type || '',
+                volume: card.dataset.productVolume || card.dataset.volume || '',
+                searchableText: normalize(card.textContent)
         };
     }
 
+
+
+
     // Recupera el carrito guardado en el navegador.
     function loadCart() {
+        // Intenta leer el carrito desde localStorage. Si no existe o hay un error, devuelve un array vacío.
         try {
             const saved = JSON.parse(
                 localStorage.getItem(STORAGE_KEY) || '[]'
@@ -119,7 +149,8 @@
             if (!Array.isArray(saved)) {
                 return [];
             }
-
+            // Filtra los elementos que no tienen id o cantidad válida, 
+            // y devuelve un array de objetos con los datos del producto y la cantidad.
             return saved
                 .filter(item =>
                     item &&
@@ -147,6 +178,11 @@
         }
     }
 
+
+
+
+
+
     // Guarda el carrito y actualiza la página.
     function saveCart() {
         try {
@@ -165,6 +201,10 @@
         renderCart();
     }
 
+
+
+
+
     // Cuenta las unidades totales del carrito.
     function totalUnits() {
         return cart.reduce(
@@ -172,6 +212,10 @@
             0
         );
     }
+
+
+
+
 
     // Actualiza los contadores del menú.
     function updateCartCounters() {
@@ -190,6 +234,10 @@
             );
         });
     }
+
+
+
+
 
     // Agrega un producto o incrementa su cantidad.
     function addToCart(product, quantity) {
@@ -231,7 +279,10 @@
         alert(`${product.name} se agregó al carrito.`);
     }
 
-    // Busca el campo de cantidad de una tarjeta.
+
+
+
+    // Busca el campo de cantidad de una tarjeta. 
     function getQuantityInput(card) {
         return card.querySelector(
             'input[name="cantidad"], ' +
@@ -240,7 +291,11 @@
         );
     }
 
+
+
+
     // Conecta los botones de compra de las tarjetas.
+    //PREGUNTAR
     function setupProductCards() {
         const cards = [
             ...document.querySelectorAll(SELECTORS.cards)
@@ -324,12 +379,18 @@
         });
     }
 
+
+
+
     // Obtiene el valor de un filtro.
     function getFilterValue(selector) {
         return document.querySelector(selector)?.value?.trim() || '';
     }
 
+
+
     // Aplica búsqueda y filtros a las tarjetas.
+    //PREGUNTAR
     function filterProducts(searchTerm = '') {
         const cards = [
             ...document.querySelectorAll(SELECTORS.cards)
@@ -431,6 +492,11 @@
         message.hidden = visibleCount !== 0;
     }
 
+
+
+
+
+
     // Configura el buscador y los filtros.
     function setupSearch() {
         const form = document.querySelector(
@@ -519,6 +585,11 @@
         });
     }
 
+
+
+
+
+
     // Crea elementos HTML de forma segura.
     function makeElement(tag, className, text) {
         const element = document.createElement(tag);
@@ -533,6 +604,11 @@
 
         return element;
     }
+
+
+
+
+
 
     // Muestra los productos, cantidades y totales del carrito.
     function renderCart() {
@@ -704,10 +780,19 @@
         );
     }
 
+
+
+
+
+
+
     // Inicializa la página del carrito.
     function setupCartPage() {
         renderCart();
     }
+
+
+    
 
     // Ejecuta las funciones cuando el HTML está cargado.
     document.addEventListener('DOMContentLoaded', () => {
