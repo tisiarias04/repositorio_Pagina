@@ -57,7 +57,7 @@ const categorias = document.createElement("p");
 categorias.textContent = "Vinos · Aperitivos · Bebidas Blancas · Selección";
 
 const titulo = document.createElement("h1");
-titulo.textContent = "Vinoteca";
+titulo.textContent = encabezado.dataset.titulo || "Vinoteca";
 
 const subtitulo = document.createElement("p");
 subtitulo.className = "subtitle";
