@@ -34,18 +34,65 @@ function armarProducto(id, datos) {
 }
 
 
+// Normaliza el texto para comparar sin distinguir
+// mayúsculas, minúsculas ni tildes.
+function normalizar(value) {
+    return String(value ?? '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+}
+
+
+function cumpleFiltros(producto, filtros){
+    const { keyWord, tipo, min, max, vmin, vmax } = filtros;
+
+    if (keyWord) {
+        const texto = normalizar(`${producto.nombre} ${producto.tipo} ${producto.variedad}`);
+        if (!texto.includes(normalizar(keyWord))) {
+            return false;
+        }
+    }
+
+    if (tipo && normalizar(producto.tipo) !== normalizar(tipo)) {
+        return false;
+    }
+
+    if (min !== undefined && producto.precio < min) {
+        return false;
+    }
+
+    if (max !== undefined && producto.precio > max) {
+        return false;
+    }
+
+    // "750 ml" -> 750
+    const volumen = parseInt(producto.volumen, 10);
+
+    if (vmin !== undefined && volumen < vmin) {
+        return false;
+    }
+
+    if (vmax !== undefined && volumen > vmax) {
+        return false;
+    }
+
+    return true;
+}
 
 
 
 // Devuelve una "página" de productos.
-async function obtenerPagina(cantidad, from) {
+async function obtenerPagina(cantidad, from, filtros) {
     const productos = await leerProductos();
-    const resultado = productos.slice(from, from + cantidad);
+    const filtrados= productos.filter(producto => cumpleFiltros(producto, filtros));
+    const resultado = filtrados.slice(from, from + cantidad);
 
     return {
         cantidad: resultado.length,
         from,
-        total: productos.length,
+        total: filtrados.length,
         productos: resultado
     };
 }

@@ -18,5 +18,5 @@ app.use("/api/productos", productosRoutes);
 app.use(manejoErrores);
 
 app.listen(PORT, () => {
-    console.log(`Servidor iniciado en http://localhost:${PORT}`);
+    console.log(`Servidor iniciado en http://localhost:${PORT}/archivos_html/estructura.html`);
 });

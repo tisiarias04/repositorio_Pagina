@@ -122,4 +122,47 @@ function validarProducto(req, res, next) {
 
     next();
 }
-module.exports ={validarProducto, validarPaginacion};
+
+
+//Valida filtros para que sean adecuados
+function validarFiltro(req, res, next){
+    const { keyWord, tipo } = req.query;
+
+    if (keyWord !== undefined && typeof keyWord !== "string") {
+        return res.status(400).json({ error: "El parámetro 'keyWord' debe ser un texto." });
+    }
+
+    if (tipo !== undefined && typeof tipo !== "string") {
+        return res.status(400).json({ error: "El parámetro 'tipo' debe ser un texto." });
+    }
+
+    const filtros = {
+        keyWord: keyWord ? keyWord.trim() : "",
+        tipo: tipo ? tipo.trim() : ""
+    };
+
+    // min/max: precio. vmin/vmax: volumen en ml.
+    for (const campo of ["min", "max", "vmin", "vmax"]) {
+        const valor = req.query[campo];
+
+        // Vacío = filtro no usado (pasa si dejan el input en blanco).
+        if (valor === undefined || valor === "") {
+            continue;
+        }
+
+        const numero = Number(valor);
+
+        if (!Number.isFinite(numero) || numero < 0) {
+            return res.status(400).json({
+                error: `El parámetro '${campo}' debe ser un número mayor o igual a cero.`
+            });
+        }
+
+        filtros[campo] = numero;
+    }
+
+    req.filtros = filtros;
+    next();
+}
+
+module.exports ={validarProducto, validarPaginacion, validarFiltro};

@@ -606,10 +606,6 @@
     }
 
 
-
-
-
-
     // Muestra los productos, cantidades y totales del carrito.
     function renderCart() {
         const container = document.querySelector(
@@ -781,16 +777,8 @@
     }
 
 
-
-
-
-
-
     // Inicializa la página del carrito.
-    function setupCartPage() {
-        renderCart();
-    }
-
+    function setupCartPage() {renderCart();}
 
     
 
@@ -800,6 +788,18 @@
         setupSearch();
         setupCartPage();
         updateCartCounters();
+
+
+         // Cuando catalogo.js crea tarjetas nuevas, les conecta el carrito
+        // y aplica la búsqueda que venga en la URL (?q=...).
+        document.addEventListener('productos-cargados', () => {
+            setupProductCards();
+
+            const consulta = new URLSearchParams(window.location.search).get('q') || '';
+            if (consulta) {
+                filterProducts(consulta);
+            }
+        });
     });
 
 })();
