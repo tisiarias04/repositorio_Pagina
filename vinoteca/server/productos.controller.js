@@ -1,9 +1,9 @@
 const productosService = require("./productos.service");
 
-// GET /api/productos?cantidad=10&from=0
+// GET /api/productos?cantidad=10&from=0&filtros
 async function listar(req, res) {
     const { cantidad, from } = req.paginacion;
-    const resultado = await productosService.obtenerPagina(cantidad, from);
+    const resultado = await productosService.obtenerPagina(cantidad, from, req.filtros);
     res.json(resultado);
 }
 

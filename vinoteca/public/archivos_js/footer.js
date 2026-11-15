@@ -1,8 +1,7 @@
 const contacto = document.getElementById("contacto");
 
 // footer
-const footer = document.createElement("footer");
-footer.className = "site-footer";
+const footer = contacto;
 
 const volverArriba = document.createElement("a");
 volverArriba.href = "#brand";
@@ -102,4 +101,3 @@ copyright.textContent = "© 2026 Grupo Vinoteca. Laboratorio Programación";
 // armado final
 footer.appendChild(grid);
 footer.appendChild(copyright);
-contacto.appendChild(footer);

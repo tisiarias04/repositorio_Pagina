@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    const CANTIDAD_POR_PAGINA = 10;
+    const cantPag = 10;
 
     let desde = 0;
     let totalProductos = null;
@@ -22,7 +22,25 @@ document.addEventListener("DOMContentLoaded", () => {
     contenedor.after(botonCargarMas);
 
 
+    // Pasa los filtros que vengan en la URL de esta página como tipo, rango, etc
+    const filtros = ["keyWord", "tipo", "min", "max", "vmin", "vmax"];
+    const parametrosPagina = new URLSearchParams(window.location.search);
 
+    function armarUrl() {
+        const parametros = new URLSearchParams({
+            cantidad: cantPag,
+            from: desde
+        });
+
+        filtros.forEach(filtro => {
+            const valor = parametrosPagina.get(filtro);
+            if (valor) {
+                parametros.set(filtro, valor);
+            }
+        });
+
+        return `/api/productos?${parametros}`;
+    }
 
 
     async function cargarProductos() {
@@ -44,9 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             //realizo solicitud al servidor
-            const respuesta = await fetch(
-                `/api/productos?cantidad=${CANTIDAD_POR_PAGINA}&from=${desde}`
-            );
+            const respuesta = await fetch(armarUrl());
 
             if (!respuesta.ok) {
                 throw new Error("No se pudieron obtener los productos.");
@@ -56,9 +72,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             totalProductos = datos.total;
 
+            if(totalProductos==0){
+                const mensaje = document.createElement("p");
+                mensaje.className = "sin-resultados";
+                mensaje.textContent = "No se encontraron productos para lo filtrado";
+                contenedor.appendChild(mensaje);
+            }
+
             datos.productos.forEach(producto => {
                 crearTarjeta(producto);
             });
+
+            // Avisa que hay tarjetas nuevas en la página (lo escucha vinoteca.js).
+            document.dispatchEvent(new Event("productos-cargados"));
 
             desde += datos.productos.length;
 
@@ -151,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         if (!seccion) {
+            seccion = document.createElement("section");
             seccion = document.createElement("section");
             seccion.className = "categoria-productos";
             seccion.dataset.categoria = categoria;
