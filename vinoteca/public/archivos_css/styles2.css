@@ -2,8 +2,8 @@
    :root representa el elemento raíz del documento HTML.
    Normalmente es <html>.
 
-   Acá definimos VARIABLES CSS, lo que permite reutilizar los mismos colores en todo
-   el archivo sin tener que escribir el código hexadecimal todo el tiempo
+   Acá definimos VARIABLES CSS, lo que permite reutilizar los mismos colores en tdo
+   el archivo sin tener que escribir el código hexadecimal tdo el tiempo
 */
 
 :root {
@@ -31,7 +31,13 @@ html {
 body {
     margin: 0;
     min-width: 320px;
-    background: var(--bordo);
+
+    background-color: var(--bordo);
+    background-image: url("../img/bodega.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
     color: var(--texto);
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.5;
@@ -43,9 +49,7 @@ a {
 }
 
 /* Accesibilidad al usar teclado */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible {
+a:focus-visible {
     outline: 3px solid var(--dorado);
     outline-offset: 3px;
 }
@@ -53,7 +57,7 @@ input:focus-visible {
 /* Encabezado */
 header {
     position: relative;
-    min-height: 390px;
+    min-height: 0px;
 
     display: flex;
     flex-direction: column;
@@ -68,12 +72,15 @@ header {
             rgba(45, 8, 16, .75)
         ),
         url("../img/fondo.jpg") center / cover;
+    padding-top:5rem;
+    padding-bottom:2rem;
+    box-shadow: 0 8px 30px rgba(111, 29, 42, 0.8);
 }
 
 /* Título y marca de la vinoteca */
 .brand {
     width: 100%;
-    max-width: 760px;
+
 }
 
 .brand p:first-child {
@@ -107,8 +114,6 @@ header {
     min-height: 68px;
     padding: .65rem 3%;
 
-    background-color: var(--bordo-oscuro);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
 }
 
 /* Grupos de botones del menú */
@@ -167,6 +172,7 @@ header {
     border-radius: 16px;
 
     box-shadow: 0 8px 25px rgba(75, 17, 27, .15);
+    max-width:1000px;
 }
 
 /* Botón para volver al catálogo */
@@ -254,18 +260,6 @@ article.detail-content {
     overflow-wrap: anywhere;
 }
 
-/* Tipo de bebida */
-.product-type {
-    display: inline-block;
-    margin-bottom: .5rem;
-
-    color: var(--bordo);
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    font-size: .85rem;
-}
-
 /* Título del producto */
 .detail-content h2 {
     margin: 0 0 1rem;
@@ -330,18 +324,17 @@ hr {
    ================================================== */
 
 .site-footer {
-    padding: 3rem 7%;
     background: var(--bordo-oscuro);
     color: var(--blanco);
+    position:relative;
+    box-shadow: 0 -8px 30px rgba(111, 29, 42, 0.8);
+
 }
 
 .footer-grid {
-    width: min(1100px, 100%);
-    margin: 0 auto;
 
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr;
-    gap: 2rem;
 }
 
 .site-footer h2 {
@@ -376,7 +369,6 @@ hr {
 /* Enlaces de redes sociales */
 .social-list a {
     display: inline-block;
-    padding: .5rem .75rem;
 
     border: 1px solid rgba(255, 255, 255, .45);
     border-radius: 7px;
@@ -386,14 +378,75 @@ hr {
 
 /* Copyright */
 .copyright {
-    width: min(1100px, 100%);
     margin: 2rem auto 0;
-    padding-top: 1.5rem;
 
     border-top: 1px solid rgba(255, 255, 255, .2);
-    font-size: .9rem;
 }
 
+/* ===== Footer compacto ===== */
+.site-footer {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 2rem;
+    align-items: start;
+    padding: 1.25rem 7%;
+    font-size: .9rem;
+    padding-bottom:0;
+}
+
+/* Botón "Volver al inicio" más chico y con menos margen */
+.site-footer > a[href="#brand"] {
+    display: inline-block;
+    margin-bottom: 2rem;
+    padding: 0.7rem 1.2rem;
+
+    background-color: var(--crema);
+    color: var(--bordo-oscuro);
+
+    border: 1px solid var(--dorado);
+    border-radius: 8px;
+
+    font-weight: bold;
+    text-decoration: none;
+
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease;
+}
+
+.footer-grid {
+    gap: 1rem;
+    width: auto;
+    margin: 0;
+}
+
+/* Títulos: Contacto, Horarios, Redes sociales */
+.site-footer h2 {
+    margin-bottom: .3rem;
+    font-size: 1.05rem;
+}
+
+/* Textos de contacto y horarios sin márgenes extra */
+.site-footer address,
+.site-footer p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.social-list a {
+    padding: .25rem .6rem;
+}
+
+.copyright {
+    margin-top: .75rem;
+    padding-top: .6rem;
+    font-size: .8rem;
+    margin-bottom: 0;
+    padding-bottom:0.5rem;
+
+    grid-column: 1 / -1;
+    width: auto;
+}
 
 
 /* Distribución del detalle: imagen a la izquierda,
@@ -426,137 +479,6 @@ hr {
     object-fit: contain;
 }
 
- /* Contenedor principal del carrito */
-        .carrito-seccion {
-            width: min(1100px, 92%);
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: var(--crema-claro, #fffaf0);
-            border: 1px solid #e1d2bd;
-            border-radius: 12px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-        }
-
-        .carrito-seccion h2 {
-            color: var(--bordo-oscuro, #4b111b);
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Tabla de productos */
-        .tabla-carrito {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .tabla-carrito th,
-        .tabla-carrito td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #e1d2bd;
-        }
-
-        .tabla-carrito th {
-            color: white;
-            background-color: var(--bordo, #6f1d2a);
-        }
-
-        .tabla-carrito tbody tr:hover {
-            background-color: var(--crema, #f6eddc);
-        }
-
-        /* Imagen de cada producto */
-        .carrito-producto {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .carrito-producto img {
-            width: 75px;
-            height: 90px;
-            object-fit: contain;
-            background-color: white;
-            border-radius: 5px;
-        }
-
-        .carrito-nombre {
-            font-weight: bold;
-            color: var(--texto, #2f2420);
-        }
-
-        /* Campo de cantidad */
-        .tabla-carrito input[type="number"] {
-            width: 70px;
-            padding: 0.5rem;
-            border: 1px solid #c9b8a0;
-            border-radius: 5px;
-        }
-
-        /* Botón para quitar un producto */
-        .boton-quitar {
-            color: white;
-            background-color: var(--bordo, #6f1d2a);
-            border: none;
-            border-radius: 5px;
-            padding: 0.5rem 0.75rem;
-            cursor: pointer;
-        }
-
-        .boton-quitar:hover {
-            background-color: var(--bordo-oscuro, #4b111b);
-        }
-
-        /* Resumen de la compra */
-        .carrito-resumen {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .carrito-total {
-            color: var(--bordo-oscuro, #4b111b);
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .carrito-acciones {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            gap: 0.75rem;
-        }
-
-        .carrito-acciones button,
-        .carrito-acciones a {
-            display: inline-block;
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            border: none;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .boton-seguir {
-            color: var(--bordo, #6f1d2a);
-            background-color: var(--crema, #f6eddc);
-        }
-
-        .boton-vaciar {
-            color: white;
-            background-color: var(--bordo, #6f1d2a);
-        }
-
-        .carrito-vacio {
-            padding: 2rem 0;
-            text-align: center;
-            color: var(--gris, #666);
-        }
-
 
 /* Información del producto. */
 #detalle-producto .detail-content {
@@ -573,9 +495,6 @@ hr {
         height: 320px;
     }
 }
-
-
-
 
 
 /* ==================================================
