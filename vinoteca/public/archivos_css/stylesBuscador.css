@@ -2,8 +2,8 @@
    :root representa el elemento raíz del documento HTML.
    Normalmente es <html>.
 
-   Acá definimos VARIABLES CSS, lo que permite reutilizar los mismos colores en todo
-   el archivo sin tener que escribir el código hexadecimal todo el tiempo
+   Acá definimos VARIABLES CSS, lo que permite reutilizar los mismos colores en tdo
+   el archivo sin tener que escribir el código hexadecimal tdo el tiempo
 */
 :root {
     --bordo: #6f1d2a;

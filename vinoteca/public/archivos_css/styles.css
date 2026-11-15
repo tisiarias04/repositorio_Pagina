@@ -2,8 +2,8 @@
    :root representa el elemento raíz del documento HTML.
    Normalmente es <html>.
 
-   Acá definimos VARIABLES CSS, lo que permite reutilizar los mismos colores en todo
-   el archivo sin tener que escribir el código hexadecimal todo el tiempo
+   Acá definimos VARIABLES CSS, lo que permite reutilizar los mismos colores en tdo
+   el archivo sin tener que escribir el código hexadecimal tdo el tiempo
 */
 :root {
     --bordo: #6f1d2a;
@@ -28,6 +28,7 @@
 html {
     /*smooth hace que cuando hagamos clic (en un enlace por ejemplo) el desplazamiento sea suave.*/
     scroll-behavior: smooth;
+    max-width: 100%;
 }
 
 
@@ -36,9 +37,6 @@ body {
 
     /*Elimina el margen que los navegadores agregan automáticamente al <body>*/
     margin: 0;
-
-    /*Evita que el contenido sea demasiado pequeño horizontalmente*/
-    min-width: 320px;
 
     /*Fondo general de la página color bordo*/
     background: var(--bordo);
@@ -51,6 +49,8 @@ body {
 
     /*Altura de línea.*/
     line-height: 1.5;
+    width: 100%;
+    min-width: 0;
 }
 
 
@@ -112,7 +112,7 @@ header {
     position: relative;
 
     /*Altura mínima del encabezado.*/
-    min-height: 390px;
+    min-height: 0px;
 
     /*Activa Flexbox.*/
     display: flex;
@@ -124,8 +124,8 @@ header {
     justify-content: flex-end;
 
     /*Espaciado interno:
-      arriba: 7rem; izquierda/derecha: 7%; abajo: 3.5rem*/
-    padding: 7rem 7% 3.5rem;
+      arriba: 5rem; izquierda/derecha: clamp(1rem, 5vw, 7%); abajo: 2rem*/
+    padding: 5rem clamp(1rem, 5vw, 7%) 2rem;
 
     /*Texto blanco dentro del header*/
     color: var(--blanco);
@@ -144,9 +144,8 @@ header {
 
         /*centro la imagen y hago que cubra el header*/
         center / cover;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
-
-
 
 
 /* Barra de navegación fija */
@@ -164,8 +163,6 @@ header {
     min-height: 68px;
     padding: 0.65rem 3%;
 
-    background-color: var(--bordo-oscuro);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Grupos de botones */
@@ -209,27 +206,6 @@ header {
     outline-offset: 3px;
 }
 
-.back-link {
-    display: inline-block;
-    margin-bottom: 1.5rem;
-    padding: .65rem 1rem;
-
-    background: var(--bordo);
-    color: var(--blanco);
-
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-
-    transition: background-color .2s ease,
-                transform .2s ease;
-}
-
-.back-link:hover {
-    background: var(--bordo-oscuro);
-    transform: translateY(-2px);
-}
-
 /* Adaptación a pantallas pequeñas */
 @media (max-width: 480px) {
     .top-menu {
@@ -249,14 +225,7 @@ header {
 }
 
 
-/*Selecciona elementos con la clase "brand" y establece un ancho máximo de 760 píxeles para limitar su tamaño en pantallas grandes,
-  asegurando que el contenido se mantenga legible y bien presentado. Afecta a la sección de marca en ambos HTML.*/
-.brand {
-    max-width: 760px;
-}
-
-
-/* Selecciona unicamente el primer párrafo dentro de la sección de marca, 
+/* Selecciona unicamente el primer párrafo dentro de la sección de marca,
    aplicando estilos específicos como margen, transformación de texto a mayúsculas, espaciado entre letras
    y tamaño de fuente para mejorar la presentación visual del contenido. Afecta al html de estructura*/
 .brand p:first-child {
@@ -277,7 +246,7 @@ header {
 }
 
 
-/* Selecciona el título principal de la marca y le aplica estilos específicos como 
+/* Selecciona el título principal de la marca y le aplica estilos específicos como
    color, fuente, tamaño de fuente responsive y altura de línea para mejorar la presentación visual del contenido.
    Afecta al html de estructura*/
 .brand h1 {
@@ -301,210 +270,18 @@ header {
    Afecta al html de estructura.*/
 .brand .subtitle {
 
-    max-width: 650px;
-
     margin-top: 1rem;
 
     font-size: 1.15rem;
-}
-
-/*Selecciona el section que contiene el contenido principal de la página. Es decir, afecta al hijo directo de tipo section de la etiqueta body.
-  Se utiliza para aplicar estilos generales a la sección principal del contenido, como ancho, márgenes, relleno y fondo.*/
-body > section {
-
-    /*El ancho máximo es 1180px. Si la pantalla es menor, utiliza el 92%.*/
-    width: min(1180px, 92%);
-
-    /*Esto centra el contenido*/
-    margin: 0 auto;
-
-    /*Espacio interno*/
-    padding: 3rem clamp(1rem, 4vw, 4rem);
-
-    /*Fondo crema*/
-    background: var(--crema);
-}
-
-/* Selecciona los elementos de clase filtro y les aplica un diseño de cuadrícula (grid) 
-   con tres columnas iguales, espacio entre ellas, márgenes, relleno, borde, radio de borde, fondo y sombra para crear un filtro visualmente atractivo y organizado.
-   Se usa en el html de estructura*/
-
-.filtro {
-
-    /*Utiliza CSS Grid.*/
-    display: grid;
-
-    /* Tres columnas iguales.
-       PRECIO | TIPO | VOLUMEN*/
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 1.25rem;
-
-    margin-bottom: 3rem;
-
-    padding: 1.5rem;
-
-    border: 1px solid #e0d1b8;
-
-    border-radius: 12px;
-
-    background: var(--crema-claro);
-
-    /*Sombra alrededor del filtro*/
-    box-shadow: 0 5px 18px rgba(75,17,27,.08);
-}
-
-
-/*Selecciona los <h3> que estén dentro de .filtro. Se utiliza para los títulos de cada sección del filtro: PRECIO, TIPO y VOLUMEN en estructura.html*/
-.filtro h3 {
-
-    margin-top: 0;
-
-    color: var(--bordo-oscuro);
-
-    font-family: Georgia, "Times New Roman", serif;
-}
-
-
-/*Selecciona los <ul> que contienen los enlaces de TIPO y VOLUMEN en estructura.html*/
-.filtro ul {
-
-    /*Elimina el margen predeterminado*/
-    margin: 0;
-
-    /*Elimina el padding predeterminado*/
-    padding: 0;
-
-    /*Elimina las viñetas*/
-    list-style: none;
-}
-
-
-/*Selecciona TODOS los <li> dentro de .filtro*/
-.filtro li {
-    margin-bottom: .55rem;
-}
-
-
-/*Selecciona enlaces <a> dentro de .filtro en estructura.html*/
-.filtro a {
-
-    color: var(--gris);
-
-    /*Elimina el subrayado*/
-    text-decoration: none;
-}
-
-
-/*Efecto al pasar el mouse sobre los enlaces del filtro.*/
-.filtro a:hover {
-
-    color: var(--bordo);
-
-    text-decoration: underline;
-}
-
-
-
-
-
-
-/* Barra de búsqueda en buscar.html */
-.barra-busqueda {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    border: 1px solid #e0d1b8;
-    border-radius: 12px;
-    background: var(--crema-claro);
-    box-shadow: 0 5px 18px rgba(75, 17, 27, 0.08);
-}
-
-.barra-busqueda label {
-    display: block;
-    margin-bottom: 0.7rem;
-    color: var(--bordo-oscuro);
-    font-weight: bold;
-}
-
-.busqueda-campos {
-    display: flex;
-    gap: 0.75rem;
-}
-
-.busqueda-campos input {
-    flex: 1;
-    min-width: 0;
-    padding: 0.8rem 1rem;
-    border: 1px solid #cbbda5;
-    border-radius: 8px;
-    background: var(--blanco);
-    color: var(--texto);
-    font: inherit;
-}
-
-.busqueda-campos button {
-    padding: 0.8rem 1.3rem;
-    border: none;
-    border-radius: 8px;
-    background: var(--bordo);
-    color: var(--blanco);
-    font-weight: bold;
-    font: inherit;
-    cursor: pointer;
-}
-
-.busqueda-campos button:hover {
-    background: var(--bordo-oscuro);
-}
-
-.busqueda-campos input:focus-visible,
-.busqueda-campos button:focus-visible {
-    outline: 3px solid var(--dorado);
-    outline-offset: 3px;
+    max-width: 100%;
 }
 
 /* Adaptación para celulares */
-@media (max-width: 480px) {
-    .busqueda-campos {
-        flex-direction: column;
-    }
-
-    .busqueda-campos button {
-        width: 100%;
-    }
-}
 
 
-
-
-
-
-.tablas{
-    width: 800px; 
-    border-collapse: separate; 
-    border-spacing: 10px"
-}
-
-/*Selecciona formularios (para ingresar valores minimos y maximos) dentro de .filtro. en estructura.html*/
-.filtro form {
-
-    display: flex;
-
-    align-items: center;
-
-    /*Permite que los elementos bajen a otra líneasi no hay espacio*/
-    flex-wrap: wrap;
-
-    gap: .4rem;
-
-    margin-top: .8rem;
-}
-
-
-/* Selecciona los input dentro de .filtro o dentro de <article> en estructura.html. 
+/* Selecciona los input dentro de .filtro o dentro de <article> en estructura.html.
    Se utiliza para los campos de entrada de cantidad de producto y para los campos de filtro de precio en estructura.html*/
 
-.filtro input,
 article input {
 
     padding: .55rem;
@@ -514,19 +291,11 @@ article input {
     border-radius: 6px;
 
     background: var(--blanco);
-}
-
-
-/*Solamente los inputs que estén dentro de .filtro
-   tendrán 80px de ancho*/
-
-.filtro input {
-    width: 80px;
+    width: 90px;
 }
 
 
 /* Selecciona los botones dentro de .filtro Y los botones dentro de article.*/
-.filtro button,
 article button {
 
     padding: .55rem .85rem;
@@ -548,71 +317,18 @@ article button {
 
 
 /*Efecto al pasar el mouse sobre esos botones*/
-.filtro button:hover,
 article button:hover {
 
     background: var(--bordo-oscuro);
 }
 
 
-/* Selecciona los titulos de tipo h2 dentro de la sección principal (el section que es hijo directo de body) 
-   y les aplica un margen, un borde inferior dorado, color de texto, fuente y tamaño de fuente. Se usa en estructura.html*/
-body > section > h2 {
-
-    margin: 3rem 0 1rem;
-
-    padding-bottom: .5rem;
-
-    /*Línea dorada debajo del título*/
-    border-bottom: 2px solid var(--dorado);
-
-    color: var(--bordo-oscuro);
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 2rem;
-}
-
-/* Selecciona las tablas que están directamente dentro
-   de la sección principal. Se utiliza en estructura.html.
-   NO afecta tablas que estén dentro de otro elemento.*/
-
-body > section > table {
-
-    /* !important obliga a utilizar este ancho incluso
-       aunque el HTML tenga otro ancho*/
-    width: 100% !important;
-
-    margin-bottom: 3rem;
-
-    /*Permite separar las celdas*/
-    border-collapse: separate;
-
-    border-spacing: 1rem;
-
-    /*Hace que las columnas tengan un tamaño uniforme*/
-    table-layout: fixed;
-}
-
-
-/*Selecciona los <td> que estén dentro de esas tablas de antes. Se usa en estructura.html*/
-body > section > table td {
-
-    width: 33.333%;
-
-    padding: 0;
-
-    /*Alinea el contenido arriba.*/
-    vertical-align: top;
-}
-
-
 /*
-   Selecciona todos los <article> de la página. Se aplica principalmente a las tarjetas de productos en index.html 
+   Selecciona todos los <article> de la página. Se aplica principalmente a las tarjetas de productos en index.html
    y a cualquier detalle.html que utilice <article> para mostrar información de un producto.*/
 article {
 
-    /*Hace que la tarjeta ocupe todo el alto disponible de su celda*/
+    /*Hace que la tarjeta ocupe tdo el alto disponible de su celda*/
     height: 100%;
 
     padding: 1rem;
@@ -627,6 +343,8 @@ article {
     text-align: center;
 
     box-shadow: 0 5px 18px rgba(75,17,27,.08);
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 
@@ -642,32 +360,28 @@ article:hover {
 }
 
 
-
 /*Selecciona las imágenes de los productos en estructura.html si están dentro de <article>*/
 /* Imágenes de productos */
 .contenedor-imagen {
-    width: 100%;
     height: 260px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     margin-bottom: 1rem;
+    width: 100%;
+    min-width: 0;
 }
 
 .contenedor-imagen img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
-    display: block;
 }
 
 
-
-
-
-
-/* Selecciona los párrafos dentro de cada producto en estructura.html. 
+/* Selecciona los párrafos dentro de cada producto en estructura.html.
    Ayuda a mantener una altura uniforme en las tarjetas de productos, asegurando que todas tengan un aspecto ordenado*/
 
 article p {
@@ -689,21 +403,9 @@ article a {
 }
 
 
-/*Cuando pasamos el mouse sobre el enlace.*/ 
+/*Cuando pasamos el mouse sobre el enlace.*/
 article a:hover {
     text-decoration: underline;
-}
-
-
-/* Selecciona todos los subtitulos de los productos y les aplica un color específico y un tamaño de fuente, 
-   mejorando la apariencia visual de los títulos dentro de las tarjetas de productos. Se usa en estructura.html para los subtítulos de cada producto*/
-article h2 {
-
-    margin: .75rem 0;
-
-    color: var(--bordo);
-
-    font-size: 1rem;
 }
 
 
@@ -725,51 +427,29 @@ article form {
 }
 
 
-/*Utilizado en estructura.html para los campos de cantidad dentro de cada producto*/
-article input {
-    width: 90px;
-}
-
-
-/* Selecciona todas las líneas horizontales <hr> en estructura.html y paginaProducto.html, 
-   aplicando estilos específicos como ancho máximo, centrado, eliminación de borde predeterminado y creación 
-   de una línea superior personalizada para mejorar la apariencia visual del separador entre contenido y footer.*/
-hr {
-
-    /*El ancho máximo es 1100px*/
-    width: min(1100px, 90%);
-
-    /*Centra la línea*/
-    margin: 0 auto;
-
-    /*Elimina el borde predeterminado*/
-    border: 0;
-
-    /*Crea nuestra propia línea superior*/
-    border-top: 1px solid rgba(75,17,27,.2);
-}
-
-
-/* Selecciona el footer de la pagina con clase site-footer y le aplica estilos específicos como relleno, fondo, color de texto y otros 
+/* Selecciona el footer de la pagina con clase site-footer y le aplica estilos específicos como relleno, fondo, color de texto y otros
    para mejorar la apariencia visual del pie de página. Se utiliza principalmente en estructura.html y paginaProducto.html si tienen la clase "site-footer"*/
 .site-footer {
-
-    padding: 3rem 7%;
 
     /*
        Fondo bordo oscuro.
     */
     background: var(--bordo-oscuro);
-
+    position:relative;
     color: var(--blanco);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 2rem;
+    align-items: start;
+    padding: 1.25rem 7% 0;
+    font-size: .9rem;
+    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.5);
 }
 
 
 /* Botón para volver al inicio */
 .site-footer > a[href="#brand"] {
     display: inline-block;
-    margin-bottom: 2rem;
-    padding: 0.7rem 1.2rem;
 
     background-color: var(--crema);
     color: var(--bordo-oscuro);
@@ -783,6 +463,8 @@ hr {
     transition: background-color 0.3s ease,
                 color 0.3s ease,
                 transform 0.3s ease;
+    margin-bottom: 0;
+    padding: .4rem .8rem;
 }
 
 /* Efecto al pasar el cursor */
@@ -799,22 +481,16 @@ hr {
 }
 
 
-/* Selecciona los elementos con la clase "footer-grid" y les aplica un diseño de cuadrícula (grid) con tres columnas, 
+/* Selecciona los elementos con la clase "footer-grid" y les aplica un diseño de cuadrícula (grid) con tres columnas,
    centrando el contenido y agregando un espacio entre las columnas para mejorar la presentación visual del pie de página.
    Se usa en estructura.html*/
 .footer-grid {
 
-    width: min(1100px, 100%);
-
-    /*Centra el contenido*/
-    margin: 0 auto;
-
     display: grid;
-
-    /*Tres columnas*/
     grid-template-columns: 1.2fr 1fr 1fr;
-
-    gap: 2rem;
+    gap: 1rem;
+    width: auto;
+    margin: 0;
 }
 
 
@@ -827,6 +503,8 @@ hr {
     color: var(--blanco);
 
     font-family: Georgia, "Times New Roman", serif;
+    margin-bottom: .3rem;
+    font-size: 1.05rem;
 }
 
 
@@ -852,7 +530,7 @@ hr {
 }
 
 
-/* Selecciona los enlaces de redes sociales dentro del footer y les aplica un diseño de lista horizontal 
+/* Selecciona los enlaces de redes sociales dentro del footer y les aplica un diseño de lista horizontal
    utilizando Flexbox, eliminando las viñetas y agregando un espacio entre los elementos para mejorar la presentación visual de los enlaces sociales.
    Se usa en estructura.html y paginaProducto.html*/
 .social-list {
@@ -873,77 +551,52 @@ hr {
 }
 
 
-/* Selecciona todos los enlaces dentro de los elementos con clase social-list y les aplica un estilo de botón con borde, 
+/* Selecciona todos los enlaces dentro de los elementos con clase social-list y les aplica un estilo de botón con borde,
    fondo semitransparente, color de texto blanco y sin subrayado, además de un tamaño de fuente específico.
    Se usa en ambos archivos html*/
 .social-list a {
 
     display: inline-block;
 
-    padding: .5rem .75rem;
-
     border: 1px solid rgba(255,255,255,.45);
 
     border-radius: 7px;
 
     text-decoration: none;
+    padding: .25rem .6rem;
 }
 
 
-/* Selecciona elementos con la clase "copyright" y les aplica un ancho máximo, centrado, relleno superior, borde superior y tamaño de fuente 
+/* Selecciona elementos con la clase "copyright" y les aplica un ancho máximo, centrado, relleno superior, borde superior y tamaño de fuente
    Se usa en ambos archivos html*/
 .copyright {
 
-    width: min(1100px, 100%);
-
-    margin: 2rem auto 0;
-
-    padding-top: 1.5rem;
+    margin: .75rem auto 0;
 
     /*Línea superior que separa el copyright del resto del footer*/
     border-top: 1px solid rgba(255,255,255,.2);
+    padding-top: .6rem;
+    font-size: .8rem;
+    padding-bottom:0.5rem;
 
-    font-size: .9rem;
+    grid-column: 1 / -1;
+    width: auto;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   DISEÑO RESPONSIVE PARA LA VINOTECA
-   Se agrega al final de styles.css
-   ===================================================== */
-
-
-/* 1. Evitar desbordamientos horizontales */
-html {
-    max-width: 100%;
-}
-
-body {
-    width: 100%;
-    min-width: 0;
+.sin-resultados {
+    width: fit-content;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--bordo-oscuro);
+    background: var(--crema-claro);
+    border: 1px dashed #e0d1b8;
+    border-radius: 12px;
 }
 
 img {
     max-width: 100%;
-}
-
-
-/* 2. Encabezado adaptable */
-header {
-    padding-left: clamp(1rem, 5vw, 7%);
-    padding-right: clamp(1rem, 5vw, 7%);
 }
 
 .brand {
@@ -951,71 +604,14 @@ header {
     max-width: 760px;
 }
 
-.brand .subtitle {
-    max-width: 100%;
-}
-
-
-/* 3. Contenido principal */
-body > section {
-    width: 100%;
-    max-width: 1180px;
-    padding: clamp(1rem, 4vw, 3rem);
-    min-width: 0;
-}
-
-
-/* 4. Tarjetas y fotografías */
-article {
-    min-width: 0;
-    overflow-wrap: anywhere;
-}
-
 article img {
     max-width: 100%;
-}
-
-.contenedor-imagen {
-    width: 100%;
-    min-width: 0;
-}
-
-.contenedor-imagen img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-
-/* 5. Catálogo: conservar las tablas en escritorio */
-body > section > table {
-    width: 100% !important;
-    max-width: 100%;
-    table-layout: fixed;
-}
-
-body > section > table td {
-    min-width: 0;
-    overflow-wrap: anywhere;
-}
-
-
-/* 6. Filtros y footer */
-.filtro {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.footer-grid {
-    grid-template-columns: 1.2fr 1fr 1fr;
 }
 
 .footer-grid > section {
     min-width: 0;
     overflow-wrap: anywhere;
 }
-
-
-
 
 
 /* Secciones de categorías del catálogo. */
@@ -1027,9 +623,12 @@ body > section > table td {
 /* Título de cada categoría. */
 #lista-productos .categoria-titulo {
     margin-bottom: 1.25rem;
-    color: var(--bordo-oscuro);
     border-bottom: 2px solid var(--dorado);
     padding-bottom: 0.5rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: bold;
+    color: var(--crema);/*cambiar*/
 }
 
 /* Tres productos por fila en pantallas grandes. */
@@ -1102,12 +701,6 @@ body > section > table td {
 }
 
 
-
-
-
-
-
-
 /* Título principal del catálogo */
 #catalogo > h2 {
     font-family: Georgia, "Times New Roman", serif;
@@ -1117,26 +710,8 @@ body > section > table td {
     text-align: center;
     margin: 2rem 0;
     padding-bottom: 1rem;
-    
+
 }
-
-
-
-/* Títulos de las categorías: Aperitivos, Vinos, Vodkas, etc. */
-#lista-productos .categoria-titulo {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    font-weight: bold;
-    color: var(--crema);/*cambiar*/
-    
-}
-
-
-
-
-
-
-
 
 
 /* =====================================================
@@ -1146,42 +721,9 @@ body > section > table td {
 
 @media (max-width: 900px) {
 
-    /* Dos columnas para los filtros */
-    .filtro {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-    }
-
-    /* Las tarjetas del catálogo se reorganizan en dos columnas */
-    body > section > table {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-        border-spacing: 0;
-    }
-
-    body > section > table tbody {
-        display: contents;
-    }
-
-    body > section > table tr {
-        display: contents;
-    }
-
-    body > section > table td {
-        display: block;
-        width: auto;
-        padding: 0;
-    }
-
     /* Footer en dos columnas */
     .footer-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    /* Detalle de producto, si utiliza detail-layout */
-    .detail-layout {
-        gap: 1.5rem;
     }
 
 }
@@ -1224,35 +766,6 @@ body > section > table td {
         height: 42px;
     }
 
-    /* Contenido principal */
-    body > section {
-        padding: 1.25rem 1rem;
-    }
-
-    body > section > h2 {
-        font-size: 1.6rem;
-    }
-
-    /* Una sola columna de productos */
-    body > section > table {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 1rem;
-    }
-
-    /* Filtros apilados verticalmente */
-    .filtro {
-        grid-template-columns: minmax(0, 1fr);
-        padding: 1rem;
-    }
-
-    .filtro form {
-        max-width: 100%;
-    }
-
-    .filtro input {
-        max-width: 100%;
-    }
-
     /* Imágenes de productos */
     .contenedor-imagen {
         height: 220px;
@@ -1267,24 +780,8 @@ body > section > table td {
         flex-wrap: wrap;
     }
 
-    /* Buscador */
-    .busqueda-campos {
-        flex-direction: column;
-    }
-
-    .busqueda-campos input,
-    .busqueda-campos button {
-        width: 100%;
-    }
-
-    /* Footer */
-    .site-footer {
-        padding: 2rem 1.25rem;
-    }
-
     .footer-grid {
         grid-template-columns: minmax(0, 1fr);
-        gap: 1.5rem;
     }
 
     .social-list {
@@ -1295,9 +792,11 @@ body > section > table td {
         overflow-wrap: anywhere;
     }
 
-    /* Detalle de producto */
-    .detail-layout {
-        grid-template-columns: minmax(0, 1fr);
-    }
+}
 
+/* Textos de contacto y horarios sin márgenes extra */
+.site-footer address,
+.site-footer p {
+    margin: 0;
+    line-height: 1.4;
 }

@@ -1,0 +1,648 @@
+/*
+   :root representa el elemento raíz del documento HTML.
+   Normalmente es <html>.
+
+   Acá definimos VARIABLES CSS, lo que permite reutilizar los mismos colores en tdo
+   el archivo sin tener que escribir el código hexadecimal tdo el tiempo
+*/
+:root {
+    --bordo: #6f1d2a;
+    --bordo-oscuro: #4b111b;
+    --crema: #f6eddc;
+    --crema-claro: #fffaf0;
+    --texto: #2f2420;
+    --gris: #666;
+    --dorado: #b58a45;
+    --blanco: #fff;
+}
+
+
+/*Afecta a todas los elementos de ambos html*/
+* {
+    /*hace que el padding y el borde estén incluidos dentro del ancho/alto especificado.*/
+    box-sizing: border-box;
+}
+
+
+/*Afecta a todas los elementos de ambos html*/
+html {
+    /*smooth hace que cuando hagamos clic (en un enlace por ejemplo) el desplazamiento sea suave.*/
+    scroll-behavior: smooth;
+    max-width: 100%;
+}
+
+
+/*selecciona el cuerpo completo de la página. Se usa en ambos HTML*/
+body {
+
+    /*Elimina el margen que los navegadores agregan automáticamente al <body>*/
+    margin: 0;
+
+    /*Fondo general de la página color bordo*/
+    background: var(--bordo);
+
+    /*Color general del texto.*/
+    color: var(--texto);
+
+    /*Fuente principal.*/
+    font-family: Arial, Helvetica, sans-serif;
+
+    /*Altura de línea.*/
+    line-height: 1.5;
+    width: 100%;
+    min-width: 0;
+}
+
+
+/*Selecciona todos los enlaces y les da el color del elemento padre que los contiene*/
+a {
+    color: inherit;
+}
+
+
+/*Se utiliza en ambos html, lo que hace es modificar un enlace cuando se activa*/
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+
+    /*agrega un contorno dorado alrededor del elemento*/
+    outline: 3px solid var(--dorado);
+
+    /*Separa un poco el contorno del elemento*/
+    outline-offset: 3px;
+}
+
+/*Afecta a la etiqueta header de ambos html*/
+header {
+
+    /*Permite posicionar elementos internos de forma absoluta tomando este header como referencia.*/
+    position: relative;
+
+    /*Altura mínima del encabezado.*/
+    min-height: 0px;
+
+    /*Activa Flexbox.*/
+    display: flex;
+
+    /*Coloca los elementos hijos uno debajo del otro.*/
+    flex-direction: column;
+
+    /*Envía el contenido hacia la parte inferior del header.*/
+    justify-content: flex-end;
+
+    /*Espaciado interno:
+      arriba: 5rem; izquierda/derecha: clamp(1rem, 5vw, 7%); abajo: 2rem*/
+    padding: 5rem clamp(1rem, 5vw, 7%) 2rem;
+
+    /*Texto blanco dentro del header*/
+    color: var(--blanco);
+
+    /*Fondo compuesto por DOS capas: Un degradado oscuro y una imagen*/
+    background:
+
+        /*Capa oscura sobre la imagen (sirve para que el texto se pueda leer mejor)*/
+        linear-gradient(
+            rgba(45,8,16,.4),
+            rgba(45,8,16,.75)
+        ),
+
+        /*Imagen de fondo*/
+        url("../img/fondo.jpg")
+
+        /*centro la imagen y hago que cubra el header*/
+        center / cover;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Barra de navegación fija */
+.top-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    min-height: 68px;
+    padding: 0.65rem 3%;
+
+}
+
+/* Grupos de botones */
+.top-menu-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Botones con símbolos */
+.menu-link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 46px;
+    height: 46px;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+
+    background-color: var(--bordo);
+    color: var(--blanco);
+
+    font-size: 1.4rem;
+    text-decoration: none;
+
+    transition: background-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+/* Efecto al pasar el cursor */
+.menu-link:hover {
+    background-color: var(--dorado);
+    transform: translateY(-2px);
+}
+
+/* Accesibilidad al navegar con teclado */
+.menu-link:focus-visible {
+    outline: 3px solid var(--crema);
+    outline-offset: 3px;
+}
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 480px) {
+    .top-menu {
+        min-height: 60px;
+        padding: 0.5rem 4%;
+    }
+
+    .top-menu-group {
+        gap: 0.5rem;
+    }
+
+    .menu-link {
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+    }
+}
+
+
+/* Selecciona unicamente el primer párrafo dentro de la sección de marca,
+   aplicando estilos específicos como margen, transformación de texto a mayúsculas, espaciado entre letras
+   y tamaño de fuente para mejorar la presentación visual del contenido. Afecta al html de estructura*/
+.brand p:first-child {
+
+    margin: 0 0 .5rem;
+
+    /*
+       Convierte el texto en mayúsculas visualmente.
+    */
+    text-transform: uppercase;
+
+    /*
+       Aumenta el espacio entre letras.
+    */
+    letter-spacing: .16em;
+
+    font-size: .8rem;
+}
+
+
+/* Selecciona el título principal de la marca y le aplica estilos específicos como
+   color, fuente, tamaño de fuente responsive y altura de línea para mejorar la presentación visual del contenido.
+   Afecta al html de estructura*/
+.brand h1 {
+
+    margin: 0;
+
+    color: var(--blanco);
+
+    /*Georgia para darle un aspecto más elegante.*/
+    font-family: Georgia, "Times New Roman", serif;
+
+    /*clamp permite que el tamaño sea responsive.
+    mínimo: 3rem; preferido: 8vw; máximo: 6rem*/
+    font-size: clamp(3rem, 8vw, 6rem);
+
+    line-height: .95;
+}
+
+
+/* Selecciona el subtítulo de la marca y le aplica estilos específicos como ancho máximo, margen superior y tamaño de fuente para mejorar la presentación visual del contenido.
+   Afecta al html de estructura.*/
+.brand .subtitle {
+
+    margin-top: 1rem;
+
+    font-size: 1.15rem;
+    max-width: 100%;
+}
+
+/* Adaptación para celulares */
+
+
+/* Selecciona los input dentro de .filtro o dentro de <article> en estructura.html.
+   Se utiliza para los campos de entrada de cantidad de producto y para los campos de filtro de precio en estructura.html*/
+
+article input {
+
+    padding: .55rem;
+
+    border: 1px solid #cbbda5;
+
+    border-radius: 6px;
+
+    background: var(--blanco);
+    width: 90px;
+}
+
+
+/* Selecciona los botones dentro de .filtro Y los botones dentro de article.*/
+article button {
+
+    padding: .55rem .85rem;
+
+    /*Sin borde*/
+    border: 0;
+
+    border-radius: 7px;
+
+    background: var(--bordo);
+
+    color: var(--blanco);
+
+    font-weight: bold;
+
+    /*Hace que el cursor se convierta en una mano*/
+    cursor: pointer;
+}
+
+
+/*Efecto al pasar el mouse sobre esos botones*/
+article button:hover {
+
+    background: var(--bordo-oscuro);
+}
+
+
+/*
+   Selecciona todos los <article> de la página. Se aplica principalmente a las tarjetas de productos en index.html
+   y a cualquier detalle.html que utilice <article> para mostrar información de un producto.*/
+article {
+
+    /*Hace que la tarjeta ocupe la celda*/
+    height: 100%;
+
+    padding: 1rem;
+
+    border: 1px solid #e1d3bb;
+
+    border-radius: 12px;
+
+    background: var(--crema-claro);
+
+    /*Centra horizontalmente el contenido de la tarjeta*/
+    text-align: center;
+
+    box-shadow: 0 5px 18px rgba(75,17,27,.08);
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+
+/*Se usa para dar un efecto visual de elevación al pasar el mouse sobre la tarjeta de producto,
+  moviéndola ligeramente hacia arriba y aumentando la sombra para resaltar el elemento*/
+article:hover {
+
+    /*Mueve la tarjeta 4px hacia arriba*/
+    transform: translateY(-4px);
+
+    /*Aumenta la sombra*/
+    box-shadow: 0 10px 25px rgba(75,17,27,.15);
+}
+
+
+/* Selecciona los párrafos dentro de cada producto en estructura.html.
+   Ayuda a mantener una altura uniforme en las tarjetas de productos, asegurando que todas tengan un aspecto ordenado*/
+
+article p {
+
+    /* Reserva un mínimo de espacio para la descripción/nombre.
+       Esto ayuda a que las tarjetas mantengan una altura
+       más uniforme*/
+    min-height: 3.5rem;
+
+    margin: .5rem 0;
+}
+
+
+/* Selecciona el footer de la pagina con clase site-footer y le aplica estilos específicos como relleno, fondo, color de texto y otros
+   para mejorar la apariencia visual del pie de página. Se utiliza principalmente en estructura.html y paginaProducto.html si tienen la clase "site-footer"*/
+.site-footer {
+
+    /*
+       Fondo bordo oscuro.
+    */
+    background: var(--bordo-oscuro);
+    position:relative;
+    color: var(--blanco);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 2rem;
+    align-items: start;
+    padding: 1.25rem 7% 0;
+    font-size: .9rem;
+    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Botón para volver al inicio */
+.site-footer > a[href="#brand"] {
+    display: inline-block;
+
+    background-color: var(--crema);
+    color: var(--bordo-oscuro);
+
+    border: 1px solid var(--dorado);
+    border-radius: 8px;
+
+    font-weight: bold;
+    text-decoration: none;
+
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease;
+    margin-bottom: 0;
+    padding: .4rem .8rem;
+}
+
+/* Efecto al pasar el cursor */
+.site-footer > a[href="#brand"]:hover {
+    background-color: var(--dorado);
+    color: var(--blanco);
+    transform: translateY(-2px);
+}
+
+/* Indicador visible al navegar con teclado */
+.site-footer > a[href="#brand"]:focus-visible {
+    outline: 3px solid var(--blanco);
+    outline-offset: 4px;
+}
+
+
+/* Selecciona los elementos con la clase "footer-grid" y les aplica un diseño de cuadrícula (grid) con tres columnas,
+   centrando el contenido y agregando un espacio entre las columnas para mejorar la presentación visual del pie de página.
+   Se usa en estructura.html*/
+.footer-grid {
+
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 1rem;
+    width: auto;
+    margin: 0;
+}
+
+
+/* Selecciona todos los <h2> dentro de .site-footer y les aplica un margen superior, color de texto y fuente específica para mejorar la apariencia visual de los títulos en el pie de página.
+   Se utiliza principalmente en estructura.html*/
+.site-footer h2 {
+
+    margin-top: 0;
+
+    color: var(--blanco);
+
+    font-family: Georgia, "Times New Roman", serif;
+    margin-bottom: .3rem;
+    font-size: 1.05rem;
+}
+
+
+/* Selecciona las etiquetas adress dentro del footer y les aplica un estilo de fuente normal, eliminando el estilo cursiva que algunos navegadores aplican por defecto a <address>.
+   Se usa en estructura.html y paginaProducto.html*/
+
+.site-footer address {
+    /* Elimina el estilo cursiva que algunos navegadores
+       aplican por defecto a <address>*/
+    font-style: normal;
+}
+
+
+/*Selecciona todos los enlaces dentro del footer. Usado en estructura.html y paginaProducto.html*/
+.site-footer a {
+    color: var(--blanco);
+}
+
+
+/*Efecto cuando pasamos el mouse sobre los enlaces del footer*/
+.site-footer a:hover {
+    color: #f0d59e;
+}
+
+
+/* Selecciona los enlaces de redes sociales dentro del footer y les aplica un diseño de lista horizontal
+   utilizando Flexbox, eliminando las viñetas y agregando un espacio entre los elementos para mejorar la presentación visual de los enlaces sociales.
+   Se usa en estructura.html y paginaProducto.html*/
+.social-list {
+
+    display: flex;
+
+    /*Permite que los elementos pasen a otra línea si no hay espacio*/
+    flex-wrap: wrap;
+
+    gap: .8rem;
+
+    margin: 0;
+
+    padding: 0;
+
+    /*Elimina las viñetas*/
+    list-style: none;
+}
+
+
+/* Selecciona todos los enlaces dentro de los elementos con clase social-list y les aplica un estilo de botón con borde,
+   fondo semitransparente, color de texto blanco y sin subrayado, además de un tamaño de fuente específico.
+   Se usa en ambos archivos html*/
+.social-list a {
+
+    display: inline-block;
+
+    border: 1px solid rgba(255,255,255,.45);
+
+    border-radius: 7px;
+
+    text-decoration: none;
+    padding: .25rem .6rem;
+}
+
+
+/* Selecciona elementos con la clase "copyright" y les aplica un ancho máximo, centrado, relleno superior, borde superior y tamaño de fuente
+   Se usa en ambos archivos html*/
+.copyright {
+
+    margin: .75rem auto 0;
+
+    /*Línea superior que separa el copyright del resto del footer*/
+    border-top: 1px solid rgba(255,255,255,.2);
+    padding-top: .6rem;
+    font-size: .8rem;
+    padding-bottom:0.5rem;
+
+    grid-column: 1 / -1;
+    width: auto;
+}
+
+img {
+    max-width: 100%;
+}
+
+.brand {
+    width: 100%;
+    max-width: 760px;
+}
+
+article img {
+    max-width: 100%;
+}
+
+.footer-grid > section {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+
+/* =====================================================
+   TABLETS Y VENTANAS MEDIANAS
+   Hasta 900 píxeles de ancho
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    /* Footer en dos columnas */
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =====================================================
+   TELÉFONOS CELULARES
+   Hasta 600 píxeles de ancho
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    /* Encabezado */
+    header {
+        min-height: 330px;
+        padding-top: 6rem;
+        padding-bottom: 2rem;
+    }
+
+    .brand h1 {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+        overflow-wrap: anywhere;
+    }
+
+    .brand .subtitle {
+        font-size: 1rem;
+    }
+
+    /* Menú fijo */
+    .top-menu {
+        padding: 0.5rem 3%;
+    }
+
+    .top-menu-group {
+        gap: 0.4rem;
+    }
+
+    .menu-link {
+        width: 42px;
+        height: 42px;
+    }
+
+    article img {
+        height: 220px;
+    }
+
+    .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .social-list {
+        gap: 0.5rem;
+    }
+
+    .copyright {
+        overflow-wrap: anywhere;
+    }
+
+}
+
+/* Textos de contacto y horarios sin márgenes extra */
+.site-footer address,
+.site-footer p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+
+/* Carrito */
+
+/* Contenedor principal del carrito */
+.carrito-seccion {
+    width: min(1100px, 92%);
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--crema-claro, #fffaf0);
+    border: 1px solid #e1d2bd;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.carrito-seccion h2 {
+    color: var(--bordo-oscuro, #4b111b);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.carrito-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.carrito-acciones a {
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: none;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.boton-seguir {
+    color: var(--bordo, #6f1d2a);
+    background-color: var(--crema, #f6eddc);
+}
+
+/*footer pegado abajo*/
+.page-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-shell > main {
+    flex: 1;
+}
