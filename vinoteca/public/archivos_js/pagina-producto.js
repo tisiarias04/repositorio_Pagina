@@ -5,6 +5,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const contenedor = document.querySelector("#detalle-producto");
 
+    if (!contenedor) {
+        return;
+    }
+
     const parametros = new URLSearchParams(window.location.search);
     const id = parametros.get("id");
 
@@ -12,8 +16,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     //para buscar el producto usar el server el endpoint de GET /api/productos/:idProducto
     if (!id) {
-            contenedor.textContent = "No se indicó qué producto mostrar.";
-            return;
+        contenedor.textContent = "No se indicó un producto.";
+        return;
     }
 
     try {
@@ -22,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // 404: el servidor nos dice que ese producto no existe.
         if (respuesta.status === 404) {
-            contenedor.textContent = "No se encontró el producto solicitado.";
+            contenedor.textContent = "No se encontró el producto.";
             return;
         }
 
@@ -32,16 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         const producto = await respuesta.json();
-        mostrarProducto(producto);
-    } catch (error) {
-        // Entra acá si el servidor está caído o respondió con error.
-        console.error(error);
-        contenedor.textContent = "No se pudo cargar el producto. Intentá de nuevo más tarde.";
-    }
 
-    function mostrarProducto(producto){
-        //Crea el contenedor para el producto, con su imagen, nombre, descripción, precio y
-        // lista de información adicional (tipo, variedad, presentación y stock disponible).
         const layout = document.createElement("div");
         layout.className = "detail-layout";
 
@@ -104,6 +99,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         layout.append(contenedorImagen, contenido);
         contenedor.replaceChildren(layout);
-
+    } catch (error) {
+        console.error(error);
+        contenedor.textContent =
+            "Ocurrió un error al cargar el producto.";
     }
 });
+
