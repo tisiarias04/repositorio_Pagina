@@ -37,7 +37,9 @@ body {
 
     /*Elimina el margen que los navegadores agregan automáticamente al <body>*/
     margin: 0;
-
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
     /*Fondo general de la página color bordo*/
     background: var(--bordo);
 
@@ -51,6 +53,10 @@ body {
     line-height: 1.5;
     width: 100%;
     min-width: 0;
+}
+
+body > main {
+    flex: 1;
 }
 
 
@@ -295,7 +301,7 @@ article input {
 }
 
 
-/* Selecciona los botones dentro de .filtro Y los botones dentro de article.*/
+/* Selecciona los botones dentro de los botones dentro de article.*/
 article button {
 
     padding: .55rem .85rem;
@@ -800,3 +806,29 @@ article img {
     margin: 0;
     line-height: 1.4;
 }
+
+/*Botón Cargar más productos
+.boton-cargar-mas {
+    display: block;
+    margin: 2rem auto 2.5rem;
+    padding: .75rem 1.5rem;
+    border: 0;
+    border-radius: 8px;
+    background: var(--crema);
+    color: var(--bordo-oscuro);
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.boton-cargar-mas[hidden] {
+    display: none;
+}
+.boton-cargar-mas:hover {
+    background: var(--crema-claro);
+
+.boton-cargar-mas:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+*/
