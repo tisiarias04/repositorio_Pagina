@@ -1,162 +1,143 @@
 <!doctype html>
 <html>
+    <head>
+    <title>Vinoteca</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../archivos_css/stylesBuscador.css">
+     <link rel="icon" href="../img/logo.png">
+    </head>
 
+    <body>
+        <header id="encabezado">
 
+        </header>
 
-
- <head>
-   <title>Vinoteca</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="../archivos_css/styles.css">
- </head>
-
-
-
-
- <body>
-
-
-
-
-   <header id="encabezado">
-        
-   </header>
-
-
-   <!-- a futuro, permite realizar busquedas mediante filtrado-->
-   <section>
+        <!-- a futuro, permite realizar busquedas mediante filtrado-->
+        <section>
             <a class="back-link" href="estructura.html#catalogo"> ← Volver al catálogo</a>
 
-        <!-- Barra de búsqueda de productos -->
-        <form class="barra-busqueda" action="estructura.html" method="get">
-            <label for="buscar-producto">¿Qué producto estás buscando?</label>
+            <!-- Barra de búsqueda de productos -->
+            <form id="form-busqueda" class="barra-busqueda" action="estructura.html" method="get">
+                <label for="buscar-producto">¿Qué producto estás buscando?</label>
 
-            <div class="busqueda-campos">
-                <input
-                    type="search"
-                    id="buscar-producto"
-                    name="q"
-                    placeholder="Ej.: Malbec, vodka, whisky..."
-                    aria-label="Nombre o palabra clave del producto"
-                >
+                <div class="busqueda-campos">
+                    <input
+                        type="search"
+                        id="buscar-producto"
+                        name="keyWord"
+                        placeholder="Ej.: Malbec, vodka, whisky..."
+                        aria-label="Nombre o palabra clave del producto"
+                    >
 
-                <button type="submit">Buscar</button>
-            </div>
-        </form>
+                    <button type="submit">Buscar</button>
+                </div>
 
-        <div class="filtro">
-           <div class="filtro-precio" >
-               <h3>Precio</h3>
-               <ul >
-                   <li>
-                       <a href="#Aperitivos" title="Hasta $15.000"
-                          style="color:gray; text-decoration: none">Hasta $15.000
-                       </a>
-                   </li>
-                   <li>
-                       <a href="#Vodkas" title="15.000-20.000"
-                          style="color:gray; text-decoration: none">Entre $15.000 y $20.000
-                       </a>
-                   </li>
-                   <li>
-                       <a href="#vinos" title="20.000-50.000"
-                          style="color:gray; text-decoration: none">Entre $20.000 y $50.000
-                       </a>
-                   </li>
-                   <li>
-                       <a href="#Whiskies" title="Mas $50.000"
-                          style="color:gray; text-decoration: none">Más de $50.000
-                       </a>
-                   </li>
-                   <li>
-                       <form>
-                           <input name="min" placeholder="Min" type="number" min="0" maxlength="6">
-                           <span>-</span>
-                           <input name="max" placeholder="Max" type="number" min="0" maxlength="6">
-                           <button type="submit">
-                               Aplicar
-                           </button>
-                       </form>
-                       <!-- Esta opcion seria para ingresar manual un minimo y maximo, para filtrar (necesita js) -->
-                   </li>
-               </ul>
-           </div>
-           <div class="filtro-tipo" >
-               <h3>Tipo Bebida</h3>
-               <ul >
-                   <li>
-                       <a href="#Aperitivos" title="aperitivo"
-                          style="color:gray; text-decoration: none">Aperitivos
-                       </a>
-                   </li>
-                   <li>
-                       <a href="#Vodkas" title="Vodkas"
-                          style="color:gray; text-decoration: none">Vodkas
-                       </a>
-                   </li>
-                   <li>
-                       <a href="#vinos" title="vinos"
-                          style="color:gray; text-decoration: none">Vinos
-                       </a>
-                   </li>
-                   <li>
-                       <a href="#Whiskies" title="Whiskies"
-                          style="color:gray; text-decoration: none">Whiskies
-                       </a>
-                   </li>
-               </ul>
-           </div>
-           <div class="filtro-cantidadUnidad" >
-               <h3>Volumen de la unidad</h3>
-               <ul >
-                   <li>
-                       <a href="#" title="Hasta 350mL"
-                          style="color:gray; text-decoration: none">Menos de 350mL
-                       </a>
-                   </li>
-                   <li>
-                       <a href="#" title="350mL-750mL"
-                          style="color:gray; text-decoration: none">Entre 350mL y 750mL
-                       </a>
-                   </li>
-                   <li>
-                       <a href="#" title="750mL-1L"
-                          style="color:gray; text-decoration: none">Entre 750mL y 1L
-                       </a>
-                   </li>
-                   <li>
-                       <a href="#" title="Mas 1L"
-                          style="color:gray; text-decoration: none">1L o más
-                       </a>
-                   </li>
-                   <li>
-                       <form>
+                <div class="filtro">
+
+                    <div class="filtro-precio" >
+                        <h3>Precio</h3>
+                        <ul >
+                            <li>
+                                <button type="button" data-min="0" data-max="15000">
+                                    Hasta $15.000
+                                </button>
+                            </li>
+                           <li>
+                               <button type="button" data-min="15000" data-max="20000">
+                                  Entre $15.000 y $20.000
+                               </button>
+                           </li>
+                           <li>
+                               <button type="button" data-min="20000" data-max="50000">
+                                  Entre $20.000 y $50.000
+                               </button>
+                           </li>
+                           <li>
+                               <button type="button" data-min="50000" >
+                                  Más de $50.000
+                               </button>
+                           </li>
+                           <li>
+
                            <input name="min" placeholder="Min" type="number" min="0">
                            <span>-</span>
-                           <input name="max" placeholder="Max" type="number" min="0">
-                           <button type="submit">
-                               Aplicar
-                           </button>
-                       </form>
-                       <!-- Esta opcion seria para ingresar manual un minimo y maximo, para filtrar (necesita js) -->
-                   </li>
-               </ul>
-           </div>
-       </div>
- </section>
+                           <input name="max" placeholder="Max" type="number" min="0" >
+
+
+
+                           </li>
+                       </ul>
+                    </div>
+
+                    <div class="filtro-tipo" >
+                       <h3>Tipo Bebida</h3>
+                       <ul >
+                           <li>
+                               <label><input type="radio" name="tipo" value="Aperitivo"> Aperitivos</label>
+                           </li>
+                           <li>
+                               <label><input type="radio" name="tipo" value="Vodka"> Vodkas</label>
+                           </li>
+                           <li>
+                               <label><input type="radio" name="tipo" value="Vino"> Vinos</label>
+                           </li>
+                           <li>
+                               <label><input type="radio" name="tipo" value="Whisky"> Whiskies</label>
+                           </li>
+                           <li>
+                               <label><input type="radio" name="tipo" checked value=""> Todos</label>
+                           </li>
+                       </ul>
+                    </div>
+
+                    <div class="filtro-cantidadUnidad" >
+                       <h3>Volumen de la unidad</h3>
+                       <ul >
+                           <li>
+                               <button type="button" data-min="0" data-max="350">
+                                  Menos de 350mL
+                               </button>
+                           </li>
+                           <li>
+                               <button type="button" data-min="350" data-max="750">
+                                  Entre 350mL y 750mL
+                               </button>
+                           </li>
+                           <li>
+                               <button type="button" data-min="750" data-max="1000">
+                                  Entre 750mL y 1L
+                               </button>
+                           </li>
+                           <li>
+                               <button type="button" data-min="1000">
+                                  1L o más
+                               </button>
+                           </li>
+                           <li>
+
+                           <input name="vmin" placeholder="VMin" type="number" min="0">
+                           <span>-</span>
+                           <input name="vmax" placeholder="VMax" type="number" min="0">
+
+
+
+                           </li>
+                       </ul>
+                    </div>
+                </div>
+                <button type="submit">Aplicar filtros</button>
+            </form>
+
+        </section>
    
 
-   <!--pie de página donde se encuentra la información de contacto-->
-   <footer class="site-footer" id="contacto">
-       
-   </footer>
+        <!--pie de página donde se encuentra la información de contacto-->
+        <footer class="site-footer" id="contacto">
 
+        </footer>
 
-
-<script src="../archivos_js/productos.js" defer></script>
-<script src="../archivos_js/catalogo.js" defer></script>
-<script src="../archivos_js/vinoteca.js" defer></script>
- <script src="../archivos_js/header.js"></script>
-<script src="../archivos_js/footer.js"></script>
- </body>
+        <script src="../archivos_js/busquedaFiltro.js" defer></script>
+        <script src="../archivos_js/header.js"></script>
+        <script src="../archivos_js/footer.js"></script>
+    </body>
 </html>
