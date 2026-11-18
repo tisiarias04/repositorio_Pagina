@@ -43,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /*
+    //version original de cargar productos, que carga los productos de a 10 y requiere click en el botón
     async function cargarProductos() {
         if (cargando) {
             return;
@@ -100,6 +102,52 @@ document.addEventListener("DOMContentLoaded", () => {
             botonCargarMas.disabled = false;
         }
     }
+    */ 
+//version 2.0 de cargar productos, que carga automáticamente todos los productos sin necesidad de hacer click en el botón
+    async function cargarProductos() {
+        if (cargando) return;
+        cargando = true;
+
+        try {
+            // Un bucle que se repite automáticamente mientras queden productos por cargar
+            while (totalProductos === null || desde < totalProductos) {
+                const respuesta = await fetch(armarUrl());
+
+                if (!respuesta.ok) {
+                    throw new Error("No se pudieron obtener los productos.");
+                }
+
+                const datos = await respuesta.json();
+                totalProductos = datos.total;
+
+                if (totalProductos === 0 && desde === 0) {
+                    const mensaje = document.createElement("p");
+                    mensaje.className = "sin-resultados";
+                    mensaje.textContent = "No se encontraron productos para lo filtrado";
+                    contenedor.appendChild(mensaje);
+                    break;
+                }
+
+                datos.productos.forEach(producto => {
+                    crearTarjeta(producto);
+                });
+
+                desde += datos.productos.length;
+            }
+
+            // Avisa que ya se cargaron todos los productos
+            document.dispatchEvent(new Event("productos-cargados"));
+            
+            // Ocultamos el botón por completo ya que se cargó todo automático
+            botonCargarMas.hidden = true;
+
+        } catch (error) {
+            console.error(error);
+        } finally {
+            cargando = false;
+        }
+    }
+    
 
     function crearTarjeta(producto) {
         const article = document.createElement("article");
@@ -195,8 +243,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         seccion.querySelector(".productos-grilla").appendChild(article);
     }
-
-    botonCargarMas.addEventListener("click", cargarProductos);
+    //En caso de utilizar la version 1 de cargar producto, esta linea se tiene que descomentar para que el boton funcione
+    //botonCargarMas.addEventListener("click", cargarProductos);
 
     cargarProductos();
 });
