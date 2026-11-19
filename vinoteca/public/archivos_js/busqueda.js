@@ -110,6 +110,7 @@
         message.hidden = visibleCount !== 0;
     }
 
+
     // Configura el buscador y los filtros.
     function setupSearch() {
         const form = document.querySelector(SELECTORS.searchForm);

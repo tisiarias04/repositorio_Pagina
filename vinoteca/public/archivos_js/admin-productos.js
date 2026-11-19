@@ -303,7 +303,7 @@ async function guardarProducto(evento) {
 
         let respuesta;
 
-        if (idProductoEditando === null) {
+        if (idProductoEditando === null) {//si no hay un producto seleccionado, estamos creando uno nuevo
 
             // CREAR PRODUCTO: POST /api/productos
 
@@ -384,7 +384,7 @@ async function guardarProducto(evento) {
 
 // CANCELAR EDICIÓN
 function cancelarEdicion() {
-
+// Limpiamos el formulario y volvemos al estado de creación.
     formulario.reset();
 
     idProductoEditando = null;
