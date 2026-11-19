@@ -2,10 +2,7 @@
 (() => {
     'use strict';
 
-    // ---------------------------------------------
     // CONSTANTES Y VARIABLES
-    // ---------------------------------------------
-
     const API_URL = '/api/productos';
 
     const CANTIDAD_POR_PAGINA = 10;
@@ -13,15 +10,11 @@
     let desde = 0;
     let totalProductos = 0;
 
-    // Si tiene un ID, estamos editando.
-    // Si es null, estamos creando un producto.
+    // Si tiene un ID, estamos editando. Si es null, estamos creando un producto.
     let idProductoEditando = null;
 
 
-    // ---------------------------------------------
     // ELEMENTOS DEL HTML
-    // ---------------------------------------------
-
     const formulario = document.querySelector('#form-producto');
 
     const tituloFormulario = document.querySelector(
@@ -49,10 +42,7 @@
     const infoPaginacion = document.querySelector('#info-paginacion');
 
 
-    // ---------------------------------------------
     // CARGAR PRODUCTOS DESDE LA API
-    // ---------------------------------------------
-
     async function cargarProductos() {
 
         estadoListado.textContent = 'Cargando productos...';
@@ -98,21 +88,14 @@
     }
 
 
-    // ---------------------------------------------
-    // MOSTRAR UN PRODUCTO
-    // ---------------------------------------------
-
-    
+    // MOSTRAR UN PRODUCTO 
 function mostrarProducto(producto) {
 
     // Creamos la tarjeta del producto.
     const articulo = document.createElement('article');
     articulo.className = 'producto-admin';
 
-    // ---------------------------------------------
     // CONTENEDOR DE LA IMAGEN
-    // ---------------------------------------------
-
     const contenedorImagen = document.createElement('div');
     contenedorImagen.className = 'contenedor-imagen';
 
@@ -130,10 +113,7 @@ function mostrarProducto(producto) {
 
     contenedorImagen.appendChild(imagen);
 
-    // ---------------------------------------------
     // INFORMACIÓN DEL PRODUCTO
-    // ---------------------------------------------
-
     const nombre = document.createElement('h3');
     nombre.textContent = producto.nombre;
 
@@ -154,10 +134,7 @@ function mostrarProducto(producto) {
     const volumen = document.createElement('p');
     volumen.textContent = `Volumen: ${producto.volumen}`;
 
-    // ---------------------------------------------
     // BOTÓN PARA EDITAR
-    // ---------------------------------------------
-
     const botonEditar = document.createElement('button');
 
     botonEditar.type = 'button';
@@ -173,10 +150,7 @@ function mostrarProducto(producto) {
     acciones.className = 'acciones';
     acciones.appendChild(botonEditar);
 
-    // ---------------------------------------------
     // AGREGAMOS TODOS LOS ELEMENTOS A LA TARJETA
-    // ---------------------------------------------
-
     articulo.append(
         contenedorImagen,
         nombre,
@@ -192,246 +166,198 @@ function mostrarProducto(producto) {
 }
 
 
+// ACTUALIZAR PAGINACIÓN
+function actualizarPaginacion() {
 
-    // ---------------------------------------------
-    // ACTUALIZAR PAGINACIÓN
-    // ---------------------------------------------
+    const paginaActual = Math.floor(
+        desde / CANTIDAD_POR_PAGINA
+    ) + 1;
 
-    function actualizarPaginacion() {
+    const cantidadPaginas = Math.ceil(
+        totalProductos / CANTIDAD_POR_PAGINA
+    );
 
-        const paginaActual = Math.floor(
-            desde / CANTIDAD_POR_PAGINA
-        ) + 1;
+    infoPaginacion.textContent =
+        `Página ${paginaActual} de ${cantidadPaginas}`;
 
-        const cantidadPaginas = Math.ceil(
-            totalProductos / CANTIDAD_POR_PAGINA
-        );
+    botonAnterior.disabled = desde === 0;
 
-        infoPaginacion.textContent =
-            `Página ${paginaActual} de ${cantidadPaginas}`;
+    botonSiguiente.disabled =
+        desde + CANTIDAD_POR_PAGINA >= totalProductos;
+}
 
-        botonAnterior.disabled = desde === 0;
 
-        botonSiguiente.disabled =
-            desde + CANTIDAD_POR_PAGINA >= totalProductos;
+// CARGAR DATOS EN EL FORMULARIO PARA EDITAR
+function cargarDatosFormulario(producto) {
+
+    // Guardamos el ID del producto seleccionado.
+    idProductoEditando = producto.id;
+
+    // Completamos los campos con sus valores actuales.
+    formulario.elements.nombre.value = producto.nombre;
+
+    formulario.elements.descripcion.value =
+        producto.descripcion;
+
+    formulario.elements.precio.value = producto.precio;
+
+    formulario.elements.stock.value = producto.stock;
+
+    formulario.elements.tipo.value = producto.tipo;
+
+    formulario.elements.variedad.value = producto.variedad;
+
+    formulario.elements.volumen.value = producto.volumen;
+
+    formulario.elements.imagen.value = producto.imagen;
+
+    tituloFormulario.textContent = 'Actualizar producto';
+
+    botonGuardar.textContent = 'Guardar cambios';
+
+    botonCancelar.hidden = false;
+
+    mensajeFormulario.textContent =
+        `Editando: ${producto.nombre}`;
+
+    formulario.scrollIntoView({
+        behavior: 'smooth'
+    });
+}
+
+// OBTENER DATOS DEL FORMULARIO
+function obtenerDatosFormulario() {
+
+    return {
+        nombre: formulario.elements.nombre.value.trim(),
+
+        descripcion: formulario.elements.descripcion.value.trim(),
+
+        precio: Number(formulario.elements.precio.value),
+
+        stock: Number(formulario.elements.stock.value),
+
+        tipo: formulario.elements.tipo.value.trim(),
+
+        variedad: formulario.elements.variedad.value.trim(),
+
+        volumen: formulario.elements.volumen.value.trim(),
+
+        imagen: formulario.elements.imagen.value.trim()
+    };
+}
+
+// VALIDAR DATOS
+function validarProducto(producto) {
+
+    let mensaje = '';
+
+    if (
+        !producto.nombre ||
+        !producto.descripcion ||
+        !producto.tipo ||
+        !producto.variedad ||
+        !producto.volumen ||
+        !producto.imagen
+    ) {
+
+        mensaje = 'Todos los campos son obligatorios.';
+
+    } else if (
+        !Number.isFinite(producto.precio) ||
+        producto.precio <= 0
+    ) {
+
+        mensaje = 'El precio debe ser mayor que cero.';
+
+    } else if (
+        !Number.isInteger(producto.stock) ||
+        producto.stock < 0
+    ) {
+
+        mensaje = 'El stock debe ser un entero igual o mayor que cero.';
     }
 
+    return mensaje;
+}
 
-    // ---------------------------------------------
-    // CARGAR DATOS EN EL FORMULARIO PARA EDITAR
-    // ---------------------------------------------
 
-    function cargarDatosFormulario(producto) {
+// CREAR O ACTUALIZAR PRODUCTOS
 
-        // Guardamos el ID del producto seleccionado.
-        idProductoEditando = producto.id;
+async function guardarProducto(evento) {
 
-        // Completamos los campos con sus valores actuales.
-        formulario.elements.nombre.value = producto.nombre;
+    evento.preventDefault();
 
-        formulario.elements.descripcion.value =
-            producto.descripcion;
+    const producto = obtenerDatosFormulario();
 
-        formulario.elements.precio.value = producto.precio;
+    const errorValidacion = validarProducto(producto);
 
-        formulario.elements.stock.value = producto.stock;
+    if (errorValidacion) {
 
-        formulario.elements.tipo.value = producto.tipo;
+        mensajeFormulario.textContent = errorValidacion;
 
-        formulario.elements.variedad.value = producto.variedad;
-
-        formulario.elements.volumen.value = producto.volumen;
-
-        formulario.elements.imagen.value = producto.imagen;
-
-        tituloFormulario.textContent = 'Actualizar producto';
-
-        botonGuardar.textContent = 'Guardar cambios';
-
-        botonCancelar.hidden = false;
-
-        mensajeFormulario.textContent =
-            `Editando: ${producto.nombre}`;
-
-        formulario.scrollIntoView({
-            behavior: 'smooth'
-        });
+        return;
     }
 
+    try {
 
-    // ---------------------------------------------
-    // OBTENER DATOS DEL FORMULARIO
-    // ---------------------------------------------
+        let respuesta;
 
-    function obtenerDatosFormulario() {
+        if (idProductoEditando === null) {
 
-        return {
-            nombre: formulario.elements.nombre.value.trim(),
+            // CREAR PRODUCTO: POST /api/productos
 
-            descripcion:
-                formulario.elements.descripcion.value.trim(),
+            respuesta = await fetch(API_URL, {
 
-            precio: Number(formulario.elements.precio.value),
+                method: 'POST',
 
-            stock: Number(formulario.elements.stock.value),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
 
-            tipo: formulario.elements.tipo.value.trim(),
+                body: JSON.stringify(producto)
+            });
 
-            variedad: formulario.elements.variedad.value.trim(),
+        } else {
 
-            volumen: formulario.elements.volumen.value.trim(),
+            // ACTUALIZAR PRODUCTO: PUT /api/productos/:id
 
-            imagen: formulario.elements.imagen.value.trim()
-        };
-    }
+            respuesta = await fetch(
+                `${API_URL}/${encodeURIComponent(idProductoEditando)}`,
+                {
 
-
-    // ---------------------------------------------
-    // VALIDAR DATOS
-    // ---------------------------------------------
-
-    function validarProducto(producto) {
-
-        let mensaje = '';
-
-        if (
-            !producto.nombre ||
-            !producto.descripcion ||
-            !producto.tipo ||
-            !producto.variedad ||
-            !producto.volumen ||
-            !producto.imagen
-        ) {
-
-            mensaje = 'Todos los campos son obligatorios.';
-
-        } else if (
-            !Number.isFinite(producto.precio) ||
-            producto.precio <= 0
-        ) {
-
-            mensaje = 'El precio debe ser mayor que cero.';
-
-        } else if (
-            !Number.isInteger(producto.stock) ||
-            producto.stock < 0
-        ) {
-
-            mensaje = 'El stock debe ser un entero igual o mayor que cero.';
-        }
-
-        return mensaje;
-    }
-
-
-    // ---------------------------------------------
-    // CREAR O ACTUALIZAR PRODUCTOS
-    // ---------------------------------------------
-
-    async function guardarProducto(evento) {
-
-        evento.preventDefault();
-
-        const producto = obtenerDatosFormulario();
-
-        const errorValidacion = validarProducto(producto);
-
-        if (errorValidacion) {
-
-            mensajeFormulario.textContent = errorValidacion;
-
-            return;
-        }
-
-        try {
-
-            let respuesta;
-
-            if (idProductoEditando === null) {
-
-                // CREAR PRODUCTO: POST /api/productos
-
-                respuesta = await fetch(API_URL, {
-
-                    method: 'POST',
+                    method: 'PUT',
 
                     headers: {
                         'Content-Type': 'application/json'
                     },
 
                     body: JSON.stringify(producto)
-                });
-
-            } else {
-
-                // ACTUALIZAR PRODUCTO: PUT /api/productos/:id
-
-                respuesta = await fetch(
-                    `${API_URL}/${encodeURIComponent(idProductoEditando)}`,
-                    {
-
-                        method: 'PUT',
-
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-
-                        body: JSON.stringify(producto)
-                    }
-                );
-            }
-
-            const datos = await respuesta.json().catch(() => ({}));
-
-            if (!respuesta.ok) {
-
-                throw new Error(
-                    datos.error || 'No se pudo guardar el producto.'
-                );
-            }
-
-            if (idProductoEditando === null) {
-
-                mensajeFormulario.textContent =
-                    'Producto creado correctamente.';
-
-            } else {
-
-                mensajeFormulario.textContent =
-                    'Producto actualizado correctamente.';
-            }
-
-            // Limpiamos el formulario.
-            formulario.reset();
-
-            idProductoEditando = null;
-
-            tituloFormulario.textContent = 'Cargar un producto';
-
-            botonGuardar.textContent = 'Guardar producto';
-
-            botonCancelar.hidden = true;
-
-            // Volvemos a la primera página y recargamos.
-            desde = 0;
-
-            await cargarProductos();
-
-        } catch (error) {
-
-            console.error(error);
-
-            mensajeFormulario.textContent = error.message;
+                }
+            );
         }
-    }
 
+        const datos = await respuesta.json().catch(() => ({}));
 
-    // ---------------------------------------------
-    // CANCELAR EDICIÓN
-    // ---------------------------------------------
+        if (!respuesta.ok) {
 
-    function cancelarEdicion() {
+            throw new Error(
+                datos.error || 'No se pudo guardar el producto.'
+            );
+        }
 
+        if (idProductoEditando === null) {
+
+            mensajeFormulario.textContent =
+                'Producto creado correctamente.';
+
+        } else {
+
+            mensajeFormulario.textContent =
+                'Producto actualizado correctamente.';
+        }
+
+        // Limpiamos el formulario.
         formulario.reset();
 
         idProductoEditando = null;
@@ -442,41 +368,63 @@ function mostrarProducto(producto) {
 
         botonCancelar.hidden = true;
 
-        mensajeFormulario.textContent =
-            'Se canceló la edición.';
+        // Volvemos a la primera página y recargamos.
+        desde = 0;
+
+        await cargarProductos();
+
+    } catch (error) {
+
+        console.error(error);
+
+        mensajeFormulario.textContent = error.message;
     }
+}
 
 
-    // ---------------------------------------------
-    // BOTONES DE PAGINACIÓN
-    // ---------------------------------------------
+// CANCELAR EDICIÓN
+function cancelarEdicion() {
 
-    botonAnterior.addEventListener('click', () => {
+    formulario.reset();
 
-        if (desde >= CANTIDAD_POR_PAGINA) {
+    idProductoEditando = null;
 
-            desde -= CANTIDAD_POR_PAGINA;
+    tituloFormulario.textContent = 'Cargar un producto';
 
-            cargarProductos();
-        }
-    });
+    botonGuardar.textContent = 'Guardar producto';
 
+    botonCancelar.hidden = true;
 
-    botonSiguiente.addEventListener('click', () => {
-
-        if (desde + CANTIDAD_POR_PAGINA < totalProductos) {
-
-            desde += CANTIDAD_POR_PAGINA;
-
-            cargarProductos();
-        }
-    });
+    mensajeFormulario.textContent =
+        'Se canceló la edición.';
+}
 
 
-    // ---------------------------------------------
+// BOTONES DE PAGINACIÓN
+botonAnterior.addEventListener('click', () => {
+
+    if (desde >= CANTIDAD_POR_PAGINA) {
+
+        desde -= CANTIDAD_POR_PAGINA;
+
+        cargarProductos();
+    }
+});
+
+
+botonSiguiente.addEventListener('click', () => {
+
+    if (desde + CANTIDAD_POR_PAGINA < totalProductos) {
+
+        desde += CANTIDAD_POR_PAGINA;
+
+        cargarProductos();
+    }
+});
+
+
+
     // INICIALIZACIÓN
-    // ---------------------------------------------
-
     formulario.addEventListener('submit', guardarProducto);
 
     botonCancelar.addEventListener('click', cancelarEdicion);
