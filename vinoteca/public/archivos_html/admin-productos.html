@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administrar productos - Vinoteca</title>
+
+    <link rel="stylesheet" href="/archivos_css/styles-admin.css">
+
+    <script src="/archivos_js/admin-productos.js" defer></script>
+</head>
+
+<body>
+
+    <!-- MENÚ SUPERIOR -->
+    <nav class="top-menu">
+
+        <a href="estructura.html" class="menu-link">
+            Volver al catálogo
+        </a>
+
+    </nav>
+
+    <!-- ENCABEZADO -->
+    <header class="admin-header">
+
+        <h1>Administración de productos</h1>
+
+        <p>Gestioná los productos de nuestra Vinoteca</p>
+
+    </header>
+
+    <main class="admin-container">
+
+        <!-- FORMULARIO -->
+        <section>
+
+            <h2 id="titulo-formulario">Cargar un producto</h2>
+
+            <form id="form-producto" class="admin-form">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="precio">Precio</label>
+                        <input type="number" name="precio" id="precio"
+                            min="0.01" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stock">Stock</label>
+                        <input type="number" name="stock" id="stock"
+                            min="0" step="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo">Tipo</label>
+                        <input type="text" name="tipo" id="tipo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="variedad">Variedad</label>
+                        <input type="text" name="variedad" id="variedad" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="volumen">Volumen</label>
+                        <input type="text" name="volumen" id="volumen"
+                            placeholder="Ejemplo: 750 ml" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="imagen">Ruta de la imagen</label>
+                        <input type="text" name="imagen" id="imagen"
+                            placeholder="../img/producto.jpg" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="descripcion">Descripción</label>
+                        <textarea name="descripcion" id="descripcion"
+                            required></textarea>
+                    </div>
+
+                </div>
+
+                <div class="admin-actions">
+
+                    <button type="submit" id="btn-guardar"
+                        class="btn-admin btn-guardar">
+                        Guardar producto
+                    </button>
+
+                    <button type="button" id="btn-cancelar"
+                        class="btn-admin btn-cancelar" hidden>
+                        Cancelar edición
+                    </button>
+
+                </div>
+
+                <p id="mensaje-formulario" class="mensaje"></p>
+
+            </form>
+
+        </section>
+
+        <!-- LISTADO DE PRODUCTOS -->
+        <section>
+
+            <h2>Productos registrados</h2>
+
+            <p id="estado-listado"></p>
+
+            <div id="lista-productos-admin" class="productos-grid">
+                <!-- Los productos se generan desde JavaScript -->
+            </div>
+
+            <!-- PAGINACIÓN -->
+            <div class="paginacion">
+
+                <button type="button" id="btn-anterior">
+                    Anterior
+                </button>
+
+                <span id="info-paginacion"></span>
+
+                <button type="button" id="btn-siguiente">
+                    Siguiente
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

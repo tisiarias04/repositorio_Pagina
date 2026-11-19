@@ -160,7 +160,27 @@ function validarFiltro(req, res, next){
 
         filtros[campo] = numero;
     }
+    // Comprueba que el precio mínimo no supere al máximo.
+    if (
+        filtros.min !== undefined &&
+        filtros.max !== undefined &&
+        filtros.min > filtros.max
+    ) {
+        return res.status(400).json({
+            error: "El precio mínimo no puede ser mayor que el precio máximo."
+        });
+    }
 
+    // Comprueba que el volumen mínimo no supere al máximo.
+    if (
+        filtros.vmin !== undefined &&
+        filtros.vmax !== undefined &&
+        filtros.vmin > filtros.vmax
+    ) {
+        return res.status(400).json({
+            error: "El volumen mínimo no puede ser mayor que el volumen máximo."
+        });
+    }
     req.filtros = filtros;
     next();
 }

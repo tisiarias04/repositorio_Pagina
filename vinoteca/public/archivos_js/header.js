@@ -17,6 +17,16 @@ linkContacto.setAttribute("aria-label", "Ir a la información de contacto");
 linkContacto.textContent = "👤";
 grupoContacto.appendChild(linkContacto);
 
+// Acceso al panel administrativo.
+const linkAdmin = document.createElement("a");
+linkAdmin.className = "menu-link";
+linkAdmin.href = "admin-productos.html";
+linkAdmin.setAttribute("aria-label", "Administrar productos");
+linkAdmin.setAttribute("title", "Administrar productos");
+linkAdmin.textContent = "⚙️";
+
+grupoContacto.appendChild(linkAdmin);
+
 // grupo 2: buscador y carrito
 const grupoAcciones = document.createElement("div");
 grupoAcciones.className = "top-menu-group";

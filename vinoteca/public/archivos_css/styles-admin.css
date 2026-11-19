@@ -1,0 +1,578 @@
+
+/* =========================================
+   ESTILOS DEL PANEL ADMINISTRATIVO
+   VINOTECA
+========================================= */
+
+/* Variables de colores */
+:root {
+    --bordo: #6f1d2a;
+    --bordo-oscuro: #4b111b;
+    --crema: #f6eddc;
+    --crema-claro: #fffaf0;
+    --texto: #2f2420;
+    --gris: #666;
+    --dorado: #b58a45;
+    --blanco: #fff;
+}
+
+/* Configuración general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--crema);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+/* =========================================
+   ENCABEZADO
+========================================= */
+
+.admin-header {
+    background: linear-gradient(
+        rgba(45, 8, 16, 0.65),
+        rgba(45, 8, 16, 0.85)
+    ),
+    url("../img/fondo.jpg") center / cover;
+
+    color: var(--crema-claro);
+    text-align: center;
+    padding: 55px 20px 40px;
+    border-bottom: 5px solid var(--dorado);
+}
+
+.admin-header h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin-bottom: 10px;
+    color: var(--crema-claro);
+}
+
+.admin-header p {
+    font-size: 1rem;
+    color: var(--crema);
+}
+
+/* =========================================
+   MENÚ SUPERIOR
+========================================= */
+
+.top-menu {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    min-height: 68px;
+    padding: 10px 5%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+
+    background-color: var(--bordo-oscuro);
+    border-bottom: 2px solid var(--dorado);
+}
+
+.menu-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 46px;
+    min-height: 46px;
+    padding: 8px 14px;
+
+    color: var(--crema-claro);
+    text-decoration: none;
+    font-weight: bold;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    transition: 0.25s ease;
+}
+
+.menu-link:hover {
+    background-color: var(--bordo);
+    border-color: var(--dorado);
+    color: var(--blanco);
+}
+
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
+
+.admin-container {
+    width: min(1150px, 92%);
+    margin: 40px auto;
+}
+
+.admin-container h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--bordo);
+    font-size: 1.9rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--dorado);
+    padding-bottom: 8px;
+}
+
+/* =========================================
+   FORMULARIO
+========================================= */
+
+.admin-form {
+    background-color: var(--crema-claro);
+    padding: 30px;
+    border-radius: 12px;
+
+    border: 1px solid #dfcfb5;
+    border-top: 5px solid var(--bordo);
+
+    box-shadow: 0 5px 18px rgba(75, 17, 27, 0.10);
+
+    margin-bottom: 45px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: var(--bordo-oscuro);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+
+    color: var(--texto);
+    background-color: var(--blanco);
+
+    border: 1px solid #cbbda8;
+    border-radius: 7px;
+
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--bordo);
+    box-shadow: 0 0 0 3px rgba(111, 29, 42, 0.12);
+}
+
+/* Campos que ocupan todo el ancho */
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+/* =========================================
+   BOTONES
+========================================= */
+
+.admin-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn-admin {
+    padding: 11px 22px;
+
+    border: none;
+    border-radius: 7px;
+
+    font-size: 0.95rem;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.btn-guardar {
+    background-color: var(--bordo);
+    color: var(--crema-claro);
+}
+
+.btn-guardar:hover {
+    background-color: var(--bordo-oscuro);
+    transform: translateY(-2px);
+}
+
+.btn-cancelar {
+    background-color: #777;
+    color: var(--blanco);
+}
+
+.btn-cancelar:hover {
+    background-color: #555;
+}
+
+/* Botones de las tarjetas */
+.btn-editar {
+    background-color: var(--dorado);
+    color: var(--blanco);
+}
+
+.btn-editar:hover {
+    background-color: #987036;
+}
+
+.btn-admin:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* =========================================
+   LISTADO DE PRODUCTOS
+========================================= */
+
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 25px;
+}
+
+.producto-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    padding: 20px;
+
+    background-color: var(--crema-claro);
+    border: 1px solid #dfcfb5;
+    border-left: 5px solid var(--bordo);
+    border-radius: 10px;
+
+    box-shadow: 0 4px 12px rgba(75, 17, 27, 0.08);
+
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.producto-admin:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 18px rgba(75, 17, 27, 0.14);
+}
+
+.producto-admin h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--bordo);
+    font-size: 1.25rem;
+}
+
+.producto-admin p {
+    color: var(--gris);
+    font-size: 0.92rem;
+}
+
+.producto-admin .precio {
+    color: var(--bordo-oscuro);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.producto-admin .stock {
+    font-weight: bold;
+    color: var(--texto);
+}
+
+.producto-admin .acciones {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+/* =========================================
+   PAGINACIÓN
+========================================= */
+
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 35px 0;
+}
+
+.paginacion button {
+    padding: 10px 18px;
+
+    background-color: var(--bordo);
+    color: var(--crema-claro);
+
+    border: none;
+    border-radius: 6px;
+
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.paginacion button:hover:not(:disabled) {
+    background-color: var(--bordo-oscuro);
+}
+
+.paginacion button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.paginacion span {
+    font-weight: bold;
+    color: var(--bordo-oscuro);
+}
+
+/* =========================================
+   MENSAJES
+========================================= */
+
+.mensaje {
+    padding: 13px 16px;
+    margin: 15px 0;
+
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.mensaje.exito {
+    background-color: #e3f2e5;
+    color: #245c30;
+    border: 1px solid #a8d5af;
+}
+
+.mensaje.error {
+    background-color: #f8e1e1;
+    color: #8b2020;
+    border: 1px solid #e4aaaa;
+}
+
+/* =========================================
+   RESPONSIVE - TABLETS
+========================================= */
+
+@media (max-width: 768px) {
+
+    .admin-container {
+        width: 94%;
+        margin: 25px auto;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .productos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-form {
+        padding: 22px;
+    }
+
+    .admin-header {
+        padding: 45px 15px 30px;
+    }
+}
+
+/* =========================================
+   RESPONSIVE - CELULARES
+========================================= */
+
+@media (max-width: 480px) {
+
+    .top-menu {
+        min-height: 60px;
+        padding: 8px 3%;
+        gap: 5px;
+    }
+
+    .menu-link {
+        min-width: 42px;
+        min-height: 42px;
+        padding: 6px 9px;
+        font-size: 0.85rem;
+    }
+
+    .admin-container {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    .admin-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .admin-form {
+        padding: 17px;
+    }
+
+    .admin-actions {
+        flex-direction: column;
+    }
+
+    .btn-admin {
+        width: 100%;
+    }
+
+    .producto-admin {
+        padding: 16px;
+    }
+
+    .producto-admin .acciones {
+        flex-direction: column;
+    }
+
+    .paginacion {
+        gap: 8px;
+    }
+
+    .paginacion button {
+        padding: 9px 13px;
+    }
+
+
+}
+
+
+/* =========================================
+   IMÁGENES DE LOS PRODUCTOS
+========================================= */
+
+.producto-admin .contenedor-imagen {
+    width: 100%;
+    height: 230px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background-color: var(--crema);
+    border-radius: 8px;
+    border: 1px solid #dfcfb5;
+}
+
+.producto-admin .contenedor-imagen img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    padding: 12px;
+}
+
+/* Mensaje cuando no existe la imagen */
+.producto-admin .contenedor-imagen {
+    color: var(--gris);
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* =========================================
+   TARJETAS ADMINISTRATIVAS
+========================================= */
+
+.producto-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    background-color: var(--crema-claro);
+    padding: 20px;
+
+    border: 1px solid #dfcfb5;
+    border-top: 4px solid var(--bordo);
+    border-radius: 10px;
+
+    box-shadow: 0 4px 12px rgba(75, 17, 27, 0.08);
+}
+
+/* Distribución de las tarjetas */
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+}
+
+/* Información */
+.producto-admin h3 {
+    color: var(--bordo);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.3rem;
+}
+
+.producto-admin .precio {
+    color: var(--bordo-oscuro);
+    font-weight: bold;
+    font-size: 1.15rem;
+}
+
+.producto-admin .stock {
+    font-weight: bold;
+}
+
+/* Botones */
+.producto-admin .acciones {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn-editar {
+    background-color: var(--dorado);
+    color: var(--blanco);
+    padding: 10px 18px;
+    border: none;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-editar:hover {
+    background-color: #987036;
+}
+
+/* Adaptación para celulares */
+@media (max-width: 768px) {
+    .productos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .producto-admin .contenedor-imagen {
+        height: 220px;
+    }
+}
+
