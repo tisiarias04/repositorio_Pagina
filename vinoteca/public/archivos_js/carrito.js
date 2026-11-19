@@ -1,4 +1,5 @@
 
+//JS con funciones para el carrito de compras, que se ejecuta en la página carrito.html y en el catálogo de productos
 (() => {
     'use strict';
 
@@ -119,12 +120,14 @@
         alert(`${product.name} se agregó al carrito.`);
     }
 
+
     // Busca el campo de cantidad de una tarjeta.
     function getQuantityInput(card) {
         return card.querySelector(
             'input[name="cantidad"], input[type="number"], [data-product-quantity]'
         );
     }
+
 
     // Configura los botones de compra de las tarjetas.
     function setupProductCards() {
@@ -195,6 +198,7 @@
             }
         });
     }
+
 
     // Muestra el contenido del carrito.
     function renderCart() {
@@ -327,7 +331,7 @@
         clearButton.type = 'button';
 
         clearButton.addEventListener('click', () => {
-            if (window.confirm('¿Querés quitar todos los productos del carrito?')) {
+            if (window.confirm('¿Desea quitar todos los productos del carrito?')) {
                 cart = [];
                 saveCart();
             }

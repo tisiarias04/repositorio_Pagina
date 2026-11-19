@@ -1,5 +1,6 @@
 
 //modificado post servidor
+//Presenta los productos en la página de catálogo, cargando automáticamente todos los productos sin necesidad de hacer click en el botón "Cargar más productos"
 document.addEventListener("DOMContentLoaded", () => {
     const contenedor = document.querySelector("#lista-productos");
 

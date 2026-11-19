@@ -10,6 +10,7 @@ async function leerProductos() {
 
 // Guarda los productos en el archivo JSON.
 async function guardarProductos(productos) {
+    //escribo el archivo con los productos en formato JSON, con indentación de 2 espacios
     await fs.writeFile(
         ARCHIVO_PRODUCTOS,
         JSON.stringify(productos, null, 2),
@@ -44,7 +45,7 @@ function normalizar(value) {
         .trim();
 }
 
-
+//Método que devuelve true si el producto cumple con los filtros
 function cumpleFiltros(producto, filtros){
     const { keyWord, tipo, min, max, vmin, vmax } = filtros;
 
@@ -117,7 +118,7 @@ async function crear(datos) {
 }
 
 
-// Reemplaza un producto. Devuelve null si no existe.
+// Actualiza un producto. Devuelve null si no existe.
 async function actualizar(id, datos) {
     const productos = await leerProductos();
     const indice = productos.findIndex(p => String(p.id) === id);
@@ -133,4 +134,5 @@ async function actualizar(id, datos) {
     return productoActualizado;
 }
 
+// Exporta las funciones del servicio de productos.
 module.exports = { obtenerPagina, obtenerPorId, crear, actualizar };
