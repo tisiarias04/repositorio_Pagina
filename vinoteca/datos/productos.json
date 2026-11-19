@@ -6,7 +6,7 @@
     "tipo": "Vino",
     "variedad": "Malbec",
     "volumen": "1000 ml",
-    "stock": 18,
+    "stock": 15,
     "imagen": "../img/vino.jpg",
     "descripcion": "Vino tinto de gran cuerpo, ideal para acompañar carnes."
   },

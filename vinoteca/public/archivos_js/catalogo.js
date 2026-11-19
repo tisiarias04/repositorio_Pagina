@@ -1,4 +1,5 @@
 
+//Codigo ejercicio 3 tp3
 //modificado post servidor
 //Presenta los productos en la página de catálogo, cargando automáticamente todos los productos sin necesidad de hacer click en el botón "Cargar más productos"
 document.addEventListener("DOMContentLoaded", () => {
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Pasa los filtros que vengan en la URL de esta página como tipo, rango, etc
     const filtros = ["keyWord", "tipo", "min", "max", "vmin", "vmax"];
+    //Ejercicio 3 tp 3
     const parametrosPagina = new URLSearchParams(window.location.search);
 
     function armarUrl() {

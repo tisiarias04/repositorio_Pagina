@@ -1,3 +1,4 @@
+//Codigo ejercicio 4 tp 3
 // Valida ?cantidad= y ?from= del GET paginado.
 function validarPaginacion(req, res, next) {
     const cantidad = req.query.cantidad === undefined
@@ -24,6 +25,7 @@ function validarPaginacion(req, res, next) {
     req.paginacion = { cantidad, from };
     next();
 }
+
 
 
 // Valida los datos recibidos para crear o actualizar un producto.

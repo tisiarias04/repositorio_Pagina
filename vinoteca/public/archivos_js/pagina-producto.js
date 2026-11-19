@@ -1,4 +1,5 @@
 
+//Codigo ejercicio 2 tp3
 //Para cada producto, y utilizando el html de paginaProducto, 
 //muestra los datos del producto seleccionado (imagen, nombre, descripción, precio y 
 // lista de información adicional (tipo, variedad, presentación y stock disponible)) 
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
         // encodeURIComponent evita problemas si el id tiene caracteres especiales.
+        //Ejercicio 2 tp 3
         const respuesta = await fetch(`/api/productos/${encodeURIComponent(id)}`);
 
         // 404: el servidor nos dice que ese producto no existe.
